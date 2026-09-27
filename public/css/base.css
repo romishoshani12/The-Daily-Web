@@ -217,3 +217,41 @@ em {
 .button.outline:hover {
   background:var(--soft);
 }
+.button.small {
+  padding:9px 16px;
+}
+.button.full {
+  width:100%;
+}
+.text-button {
+  background:none;
+  border:0;
+  color:var(--green);
+  padding:7px 0;
+  font-size:14px;
+}
+.danger {
+  color:var(--red);
+}
+.eyebrow {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:1.5px;
+  margin-bottom:15px;
+}
+.eyebrow i {
+  height:7px;
+  width:7px;
+  background:var(--green);
+  border-radius:50%;
+}
+.section-heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:25px;
+}
