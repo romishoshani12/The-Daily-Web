@@ -462,3 +462,41 @@ em {
   }
 
 }
+@media(prefers-reduced-motion:reduce) {
+  html {
+    scroll-behavior:auto;
+  }
+  * {
+    transition:none!important;
+  }
+
+}
+.preview-banner {
+  background:#f4e6bd;
+  color:#503f20;
+  padding:8px 20px;
+  font-size:12px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:25px;
+  flex-wrap:wrap;
+}
+.preview-banner nav {
+  display:flex;
+  gap:18px;
+}
+.preview-banner a {
+  text-decoration:underline;
+}
+
+/* Warm paper, an ink rule and a small printer's mark define this edition. */
+.edition { border-top: 4px solid var(--green); }
+.brand-mark { border-radius: 2px 16px 2px 2px; box-shadow: 5px 5px 0 var(--lime); }
+.masthead { padding-block: 32px; }
+.footer { border-top: 3px double var(--green); }
+h1, h2, .brand-name { overflow-wrap: anywhere; }
+@media (max-width: 430px) {
+  .masthead { flex-wrap: wrap; }
+  .account-nav { margin-inline-start: auto; }
+}
