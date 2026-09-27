@@ -38,3 +38,42 @@ button,input,select,textarea {
 button,a,input,textarea,select {
   -webkit-tap-highlight-color:transparent;
 }
+button,a {
+  touch-action:manipulation;
+}
+button {
+  cursor:pointer;
+}
+button:disabled {
+  cursor:default;
+  opacity:.5;
+}
+button:focus-visible,a:focus-visible {
+  outline:3px solid #76a477;
+  outline-offset:4px;
+}
+input:focus,textarea:focus,select:focus {
+  outline:2px solid var(--green);
+  outline-offset:1px;
+}
+input,select,textarea {
+  width:100%;
+  border:1px solid var(--line);
+  background:var(--white);
+  border-radius:5px;
+  color:var(--ink);
+  padding:12px 14px;
+}
+textarea {
+  resize:vertical;
+}
+input::placeholder,textarea::placeholder {
+  color:#899189;
+}
+label {
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  font-size:14px;
+  font-weight:600;
+}
