@@ -294,3 +294,41 @@ em {
 .search-field input:focus {
   outline:0;
 }
+.search-field:focus-within {
+  outline:2px solid var(--green);
+}
+.back-link {
+  font-size:14px;
+  color:var(--muted);
+  display:inline-block;
+  margin-bottom:24px;
+}
+.result-count {
+  font-size:13px;
+  color:var(--muted);
+  margin:18px 0;
+}
+.form-message {
+  color:var(--red);
+  font-size:14px;
+  min-height:20px;
+  margin:12px 0;
+}
+.form-row {
+  display:flex;
+  gap:20px;
+  align-items:flex-end;
+}
+.form-row>label {
+  flex:1;
+  min-width:0;
+}
+.form-bottom {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+}
+.form-bottom .muted {
+  font-size:12px;
+}
