@@ -365,3 +365,39 @@ em {
   color:var(--green);
   margin-left:10px;
 }
+.toast {
+  position:fixed;
+  bottom:28px;
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--ink);
+  color:white;
+  padding:12px 25px;
+  border-radius:7px;
+  z-index:100;
+  box-shadow:0 4px 30px #0002;
+  max-width:90vw;
+}
+.empty {
+  padding:60px 25px;
+  text-align:center;
+  border:1px dashed var(--line);
+  border-radius:8px;
+  color:var(--muted);
+  width:100%;
+}
+.empty h2 {
+  color:var(--ink);
+}
+@media(min-width:1500px) {
+  .footer {
+    max-width:1304px;
+  }
+
+}
+@media(max-width:1400px) {
+  .footer {
+    margin-inline:48px;
+  }
+
+}
