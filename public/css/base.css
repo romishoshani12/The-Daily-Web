@@ -1,0 +1,40 @@
+@font-face {
+  font-family:Local;
+  src:local("Arial");
+}
+:root {
+  --paper:#f8f6ef;
+  --white:#fff;
+  --ink:#182c29;
+  --muted:#6a756f;
+  --line:#dddcd1;
+  --green:#215b45;
+  --lime:#dbea90;
+  --soft:#eaf0e6;
+  --red:#a63d36;
+  --radius:8px;
+}
+* {
+  box-sizing:border-box;
+}
+html {
+  scroll-behavior:smooth;
+}
+body {
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:Arial,sans-serif;
+  font-size:16px;
+  line-height:1.6;
+}
+a {
+  color:inherit;
+  text-decoration:none;
+}
+button,input,select,textarea {
+  font:inherit;
+}
+button,a,input,textarea,select {
+  -webkit-tap-highlight-color:transparent;
+}
