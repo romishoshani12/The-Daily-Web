@@ -177,3 +177,43 @@ em {
   font-weight:800;
   letter-spacing:1.5px;
 }
+.brand-name>span {
+  display:block;
+  font-size:12px;
+  letter-spacing:0;
+  font-weight:400;
+  text-align:right;
+  color:var(--muted);
+  margin-top:2px;
+}
+.account-nav {
+  display:flex;
+  align-items:center;
+  gap:22px;
+  font-size:14px;
+}
+.button {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  border:1px solid var(--green);
+  border-radius:4px;
+  background:var(--green);
+  color:white;
+  padding:12px 22px;
+  font-size:14px;
+  font-weight:600;
+  transition:background .2s,transform .2s;
+}
+.button:hover {
+  background:#17432f;
+}
+.button.outline {
+  background:transparent;
+  color:var(--ink);
+  border-color:#b7c2b3;
+}
+.button.outline:hover {
+  background:var(--soft);
+}
