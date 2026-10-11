@@ -1,0 +1,9 @@
+<nav class="staff-nav" aria-label="סביבת עבודה">
+<a href="/reporter">הכתבות שלי</a>
+<% if (user.role === 'editor') { %>
+<a href="/editor">דסק העורך</a>
+<a href="/analytics">Impact Analytics</a>
+<a href="/users">אנשי המערכת</a>
+<% } %>
+<a href="/">לאתר החדשות ↗</a>
+</nav>
