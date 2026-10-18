@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="<%= csrf %>">
+  <meta name="description" content="The Daily Web — חדשות, סיפורים ורעיונות עם נקודת מבט חדשה.">
+  <title>
+<%= title %> | The Daily Web</title>
+  <link rel="icon" href="/images/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/<%= typeof sheet !== 'undefined' ? sheet : 'feed' %>.css">
+  </head>
+<body>
+<% if (typeof preview !== 'undefined' && preview) { %>
+<div class="preview-banner">תצוגת עיצוב בלבד · השמירה וההתחברות זמינות בהרצה עם MongoDB </div>
+<% } %>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<div class="edition">
+<span>יום חדש. נקודת מבט חדשה.</span>
+<span>
+<%= date(new Date()) %>
+</span>
+<span class="edition-name">THE INDEPENDENT EDITION</span>
+</div>
+<header class="masthead">
+  <a class="brand" href="/" aria-label="The Daily Web — דף הבית">
+<span class="brand-mark">dw<span>.</span>
+</span>
+<span class="brand-name" dir="ltr">THE DAILY WEB<span>חדשות. אנשים. נקודות מבט.</span>
+</span>
+</a>
+  <nav class="account-nav" aria-label="ניווט מערכת">
+    <% if (user) { %>
+      <span class="greeting">שלום, <%= user.name %>
+</span>
+      <a href="<%= user.role === 'editor' ? '/editor' : '/reporter' %>">סביבת העבודה</a>
+      <button class="text-button" id="logout" type="button">יציאה ↗</button>
+    <% } else { %>
+<a class="button small outline" href="/login">כניסת צוות <span aria-hidden="true">↗</span>
+</a>
+<% } %>
+  </nav>
+</header>
+<div class="toast" id="toast" role="status" hidden>
+</div>
