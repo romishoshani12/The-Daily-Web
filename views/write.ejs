@@ -30,9 +30,35 @@
 <%= article.draft.summary %>
 </textarea>
 </label>
+<div class="form-row">
+<label>קטגוריה<select name="category">
+<% categories.forEach(category => { %>
+<option <%= article.draft.category === category ? 'selected' : '' %>>
+<%= category %>
+</option>
+<% }) %>
+</select>
+</label>
+<label>תמונה ראשית<input name="image" value="<%= article.draft.image %>" dir="ltr" required>
+</label>
+</div>
+<label>תוכן הכתבה<textarea class="body-editor" name="body" rows="18" maxlength="60000" placeholder="כאן מתחיל הסיפור שלכם…" required>
+<%= article.draft.body %>
+</textarea>
+</label>
 </fieldset>
 </form>
+<div class="write-bottom">
+<span id="word-count" class="muted">
+</span>
+<span id="save-state" role="status">כל השינויים שמורים</span>
+</div>
+<button class="button outline" id="retry-save" hidden>ניסיון שמירה נוסף</button>
 </section>
+<aside class="write-aside">
+<span class="eyebrow">הדרך לפרסום</span>
+<h2>עוד רגע,<br>כולם קוראים.</h2>
+</aside>
 </div>
 </main>
 <%- include('partials/footer') %>
