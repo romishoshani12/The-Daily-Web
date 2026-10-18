@@ -58,7 +58,25 @@
 <aside class="write-aside">
 <span class="eyebrow">הדרך לפרסום</span>
 <h2>עוד רגע,<br>כולם קוראים.</h2>
+<p>העבודה נשמרת אוטומטית. רק גרסה שאושרה בידי עורך מוצגת לקוראים.</p>
+<% if (article.status !== 'pending') { %>
+<button class="button full" id="submit-article" <%= article.status === 'published' ? 'disabled' : '' %>>
+<%= article.status === 'returned' ? 'הגשה מחדש לאחר תיקון' : 'שליחה לאישור עורך' %> ←</button>
+<% } %>
+<% if (article.status === 'published') { %>
+<p id="submit-hint">ערכו את הכתבה כדי להכין עדכון חדש לאישור.</p>
+<% } %>
+<%- include('partials/review-actions', { article }) %>
+<% if (article.published) { %>
+<a class="button outline full" href="/articles/<%= article.id %>" target="_blank">לגרסה הציבורית ↗</a>
+<% } %>
+<% if (user.role === 'editor') { %>
+<button class="text-button danger" id="delete-article">מחיקת הכתבה</button>
+<% } %>
+<p id="write-message" role="alert">
+</p>
 </aside>
 </div>
+<%- include('partials/published-comparison', { article }) %>
 </main>
 <%- include('partials/footer') %>
