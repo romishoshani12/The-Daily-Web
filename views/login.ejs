@@ -1,0 +1,30 @@
+<%- include('partials/head', { sheet: 'staff' }) %>
+<main id="main" class="login-layout">
+<section class="login-intro">
+<span class="eyebrow">מאחורי הסיפורים</span>
+<h1>חדשות טובות<br>מתחילות<br>
+<em>בצוות טוב.</em>
+</h1>
+<p>מקום אחד לכתוב, לדייק ולפרסם.</p>
+<span class="giant-mark" aria-hidden="true">dw.</span>
+</section>
+<section class="login-panel">
+<span class="eyebrow">THE NEWSROOM</span>
+<h2>טוב שחזרתם.</h2>
+<p class="muted">נכנסים וממשיכים מהנקודה שבה עצרתם.</p>
+<% if (typeof preview !== 'undefined' && preview) { %>
+<p class="notice">תצוגה זו מציגה את העיצוב בלבד. להתחברות ולעבודה בכתבות יש לפתוח את המערכת המלאה לפי הוראות ההרצה.</p>
+<% } %>
+<form id="login-form">
+<label>שם משתמש<input name="username" required autocomplete="username" dir="ltr" placeholder="your.username">
+</label>
+<label>סיסמה<input name="password" type="password" required autocomplete="current-password" dir="ltr" placeholder="••••••••••">
+</label>
+<p class="form-message" role="alert">
+</p>
+<button class="button full" type="submit">כניסה לסביבת העבודה ←</button>
+</form>
+<a class="back-link" href="/">→ בינתיים, בחזרה לחדשות</a>
+</section>
+</main>
+<%- include('partials/footer') %>
