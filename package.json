@@ -6,7 +6,11 @@
   "engines": {
     "node": ">=22"
   },
-  "scripts": {},
+  "scripts": {
+    "start": "node --env-file=.env server.js",
+    "dev": "node --env-file=.env --watch server.js",
+    "seed": "node --env-file=.env scripts/seed.js"
+  },
   "dependencies": {
     "dompurify": "^3.4.15",
     "ejs": "3.1.10",
