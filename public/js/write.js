@@ -40,4 +40,19 @@
   window.addEventListener('online', () => { if (dirty) pump(); });
   window.addEventListener('beforeunload', event => { if (dirty || running || failed) { event.preventDefault(); event.returnValue = ''; } });
   document.addEventListener('visibilitychange', () => { if (document.hidden && dirty) pump(); });
+  async function action(path, body) {
+    message.textContent = '';
+    const buttons = main.querySelectorAll('aside button'); buttons.forEach(b => { b.disabled = true; });
+    try {
+      await pump();
+      if (dirty || failed) throw new Error('יש להשלים את השמירה לפני שליחת הכתבה.');
+      await DW.api('/api/work/articles/' + id + path, { method: 'POST', body: JSON.stringify(body) });
+      location.href = main.dataset.editor === 'true' ? '/editor' : '/reporter';
+    } catch (error) { message.textContent = error.message; buttons.forEach(b => { b.disabled = false; }); }
+  }
+  document.getElementById('submit-article')?.addEventListener('click', () => {
+    if (form.reportValidity()) action('/submit', {});
+  });
+  window.DW.writer = { action, pump, form, id, main, message, clearDirty: () => { dirty = false; failed = false; } };
+  count();
 })();
