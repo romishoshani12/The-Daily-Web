@@ -36,3 +36,41 @@
 .workspace-heading .back-link {
   margin-bottom:10px;
 }
+.workspace-filter {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  border-bottom:1px solid var(--line);
+  padding-bottom:16px;
+}
+.status-tabs {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.status-tabs button {
+  border:0;
+  background:transparent;
+  padding:9px 14px;
+  border-radius:5px;
+  font-size:14px;
+  color:var(--muted);
+}
+.status-tabs button.active {
+  background:var(--green);
+  color:white;
+}
+.workspace-filter .search-field {
+  max-width:240px;
+}
+.work-row {
+  display:flex;
+  align-items:center;
+  gap:20px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:7px;
+  padding:20px;
+  margin-bottom:12px;
+}
