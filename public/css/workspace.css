@@ -1,0 +1,38 @@
+.staff-nav {
+  display:flex;
+  gap:30px;
+  background:var(--ink);
+  color:white;
+  padding:15px max(48px,calc((100vw - 1304px)/2));
+  font-size:14px;
+  overflow:auto;
+  white-space:nowrap;
+}
+.staff-nav a:hover {
+  color:var(--lime);
+}
+.staff-nav a:last-child {
+  margin-right:auto;
+}
+.staff-main {
+  max-width:1304px;
+  margin:42px auto;
+  min-height:55vh;
+}
+.workspace-heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:30px;
+  margin-bottom:35px;
+}
+.workspace-heading h1 {
+  font-size:37px;
+  margin-bottom:10px;
+}
+.workspace-heading p {
+  margin:0;
+}
+.workspace-heading .back-link {
+  margin-bottom:10px;
+}
