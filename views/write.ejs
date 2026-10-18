@@ -1,0 +1,38 @@
+<%- include('partials/head', { sheet: 'staff' }) %>
+<%- include('partials/staff-nav') %>
+<main id="main" class="staff-main write-main" data-article-id="<%= article.id %>" data-status="<%= article.status %>" data-revision="<%= article.revision %>" data-editor="<%= user.role === 'editor' %>">
+<div class="workspace-heading">
+<div>
+<a class="back-link" href="<%= user.role === 'editor' ? '/editor' : '/reporter' %>">→ סביבת העבודה</a>
+<h1>
+<%= article.draft.title || 'סיפור חדש מתחיל כאן' %>
+</h1>
+</div>
+<span class="status <%= article.status %>" id="article-status">
+<%= stateLabels[article.status] %>
+</span>
+</div>
+<% if (article.editorNote) { %>
+<div class="notice">
+<strong>הערת העורך</strong>
+<p>
+<%= article.editorNote %>
+</p>
+</div>
+<% } %>
+<div class="write-layout">
+<section class="write-surface">
+<form id="write-form">
+<fieldset <%= article.status === 'pending' && user.role !== 'editor' ? 'disabled' : '' %>>
+<label>כותרת<input name="title" value="<%= article.draft.title %>" maxlength="180" placeholder="כותרת שעושה חשק לקרוא" required>
+</label>
+<label>תקציר<textarea name="summary" rows="3" maxlength="450" placeholder="הסיפור בכמה מילים" required>
+<%= article.draft.summary %>
+</textarea>
+</label>
+</fieldset>
+</form>
+</section>
+</div>
+</main>
+<%- include('partials/footer') %>
