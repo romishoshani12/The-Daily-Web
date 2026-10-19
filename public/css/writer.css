@@ -1,0 +1,39 @@
+.notice {
+  border-right:4px solid #bd7b35;
+  background:#fff0d8;
+  padding:18px 22px;
+  margin-bottom:25px;
+}
+.notice p {
+  margin:5px 0 0;
+}
+.write-layout {
+  display:flex;
+  align-items:flex-start;
+  gap:28px;
+}
+.write-surface {
+  flex:1;
+  min-width:0;
+  background:white;
+  border:1px solid var(--line);
+  padding:30px;
+  border-radius:7px;
+}
+.write-surface label {
+  margin-bottom:22px;
+}
+.write-surface fieldset {
+  padding:0;
+  margin:0;
+  border:0;
+  min-width:0;
+}
+.write-surface input[name=title] {
+  font-size:24px;
+  font-weight:600;
+}
+.body-editor {
+  font-size:18px;
+  line-height:1.9;
+}
