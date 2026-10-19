@@ -143,3 +143,43 @@
   border-radius:7px;
   opacity:.65;
 }
+.lead .card-content {
+  position:absolute;
+  bottom:0;
+  right:0;
+  left:0;
+  padding:100px 28px 27px;
+  background:linear-gradient(transparent,rgba(8,27,23,.95));
+  color:white;
+}
+.lead h2 {
+  font-size:34px;
+  max-width:620px;
+  margin-bottom:12px;
+}
+.lead p {
+  color:#e0e7dc;
+  max-width:580px;
+}
+.lead .card-byline,.lead .card-meta {
+  color:#e0e7dc;
+}
+.lead .tag {
+  background:var(--lime);
+  color:var(--ink);
+}
+.lead .read-badge {
+  color:var(--lime);
+}
+.weather-card {
+  background:#e9eedf;
+  border:1px solid #dce4cf;
+  border-radius:7px;
+  padding:23px;
+  margin-bottom:25px;
+}
+.sidebar-heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
