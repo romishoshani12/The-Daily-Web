@@ -37,3 +37,37 @@
   font-size:18px;
   line-height:1.9;
 }
+.write-aside {
+  width:245px;
+  flex-shrink:0;
+  padding:25px;
+  background:var(--soft);
+  border-radius:7px;
+}
+.write-aside h2 {
+  font-size:28px;
+}
+.write-aside p {
+  font-size:14px;
+  color:var(--muted);
+}
+.write-aside .button {
+  margin-bottom:12px;
+}
+.write-aside label {
+  margin:15px 0;
+}
+.write-aside #write-message {
+  color:var(--red);
+}
+.write-bottom {
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  font-size:12px;
+  border-top:1px solid var(--line);
+  padding-top:18px;
+}
+#save-state {
+  color:var(--green);
+}
