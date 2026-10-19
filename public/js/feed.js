@@ -57,4 +57,18 @@
   observer.observe(document.getElementById('feed-end'));
   load();
   let weatherExpiry;
+  async function weather() {
+    const box = document.getElementById('weather');
+    try {
+      const data = await DW.api('/api/weather');
+      const remaining = 15 * 60000 - (Date.now() - new Date(data.observedAt).getTime());
+      if (!(remaining > 0 && remaining <= 15 * 60000)) throw new Error('Expired weather');
+      clearTimeout(weatherExpiry);
+      weatherExpiry = setTimeout(() => box.replaceChildren(DW.node('p', '', 'ממתינים לנתוני מזג אוויר מעודכנים.')), remaining);
+      box.replaceChildren();
+      const main = DW.node('div', 'weather-main'); main.append(DW.node('span', 'weather-temp', Math.round(data.temperature) + '°'), DW.node('span', 'weather-icon', data.code < 3 ? '☀' : '☁'));
+      box.append(main, DW.node('p', '', data.city), DW.node('span', 'weather-time', 'נתונים מ־' + new Date(data.observedAt).toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' })));
+    } catch { box.replaceChildren(DW.node('p', '', 'נתוני מזג האוויר אינם זמינים כרגע.')); }
+  }
+  weather(); setInterval(weather, 5 * 60000);
 })();
