@@ -1,0 +1,35 @@
+<%- include('partials/head', { sheet: 'article' }) %>
+<div class="reading-progress" aria-hidden="true">
+<progress id="reading-progress" max="100" value="0">
+</progress>
+</div>
+<main id="main" class="article-layout" data-article-id="<%= article._id %>" data-editor="<%= user?.role === 'editor' %>">
+  <article class="full-article">
+    <a class="back-link" href="/">→ חזרה לכל הסיפורים</a>
+    <div class="article-heading">
+<span class="tag">
+<%= article.published.category %>
+</span>
+<span class="muted">מהדורת הדגמה</span>
+</div>
+    <h1>
+<%= article.published.title %>
+</h1>
+<p class="article-summary">
+<%= article.published.summary %>
+</p>
+    <div class="byline">
+<span class="avatar">
+<%= article.author?.name?.slice(0,1) || 'מ' %>
+</span>
+<span>
+<strong>
+<%= article.author?.name || 'מערכת' %>
+</strong>
+<span>
+<%= date(article.publishedAt) %> · <%= Math.max(1, Math.ceil(article.published.body.split(/\s+/).length / 200)) %> דקות קריאה</span>
+</span>
+</div>
+</article>
+</main>
+<%- include('partials/footer') %>
