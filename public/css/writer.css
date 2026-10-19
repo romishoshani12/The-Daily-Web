@@ -71,3 +71,24 @@
 #save-state {
   color:var(--green);
 }
+@media(max-width:760px) {
+  .write-layout {
+    flex-direction:column;
+  }
+  .write-surface,.write-aside {
+    width:100%;
+  }
+  .write-surface {
+    padding:20px;
+  }
+  .write-surface input[name=title] {
+    font-size:20px;
+  }
+  .write-bottom {
+    flex-wrap:wrap;
+  }
+
+}
+
+.write-aside { border-top: 3px solid var(--green); }
+.write-surface { border-radius: 2px; border-top: 3px double var(--green); }
