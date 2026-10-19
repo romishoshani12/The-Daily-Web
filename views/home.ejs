@@ -58,5 +58,37 @@
 </p>
 </div>
   </section>
+  <aside class="news-sidebar">
+    <section class="weather-card">
+<div class="sidebar-heading">
+<h2>מבט החוצה</h2>
+<span>↗</span>
+</div>
+<div id="weather" aria-live="polite">בודקים את מזג האוויר…</div>
+<a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo ↗</a>
+</section>
+    <section class="editors-note">
+<span class="eyebrow">מהמערכת</span>
+<h2>יותר מכותרת.<br>עוד נקודת מבט.</h2>
+<p>טכנולוגיה שמשנה הרגלים, תרבות שמעוררת מחשבה ומדע שמרחיב אופקים.</p>
+<span class="note-rule">
+</span>
+<span>קחו רגע. יש מה לגלות.</span>
+</section>
+    <section class="reading-guide">
+<h2>בוחרים כיוון</h2>
+<% categories.slice(0,4).forEach((category, i) => { %>
+<button data-category="<%= category %>" aria-pressed="false">
+<span class="muted">0<%= i+1 %>
+</span>
+<span>
+<%= category %>
+</span>
+<span>←</span>
+</button>
+<% }) %>
+</section>
+    <p class="demo-note">מהדורת הדגמה.<br>הסיפורים והנתונים להמחשה בלבד.</p>
+  </aside>
 </main>
 <%- include('partials/footer') %>
