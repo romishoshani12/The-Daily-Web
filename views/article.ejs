@@ -29,7 +29,36 @@
 <span>
 <%= date(article.publishedAt) %> · <%= Math.max(1, Math.ceil(article.published.body.split(/\s+/).length / 200)) %> דקות קריאה</span>
 </span>
+<button class="text-button" id="copy-link">העתקת קישור ↗</button>
 </div>
+    <img class="article-image" src="<%= article.published.image %>" alt="איור מלווה לכתבה" fetchpriority="high">
+    <div class="article-body" id="article-body">
+<% article.published.body.split(/\n+/).filter(Boolean).forEach(paragraph => { %>
+<p>
+<%= paragraph %>
+</p>
+<% }) %>
+</div>
+    <section class="comments" aria-labelledby="comments-title">
+<div class="section-heading">
+<div>
+<span class="eyebrow">תגובות הקוראים</span>
+<h2 id="comments-title">השיחה ממשיכה כאן</h2>
+</div>
+</div>
+      <form id="comment-form">
+<label>איך קוראים לכם?<input name="name" maxlength="60" required placeholder="השם שיופיע בתגובה">
+</label>
+<label>מה דעתכם?<textarea name="body" maxlength="1200" rows="3" required placeholder="מוסיפים נקודת מבט לשיחה…">
+</textarea>
+</label>
+<div class="form-bottom">
+<button class="button" type="submit">פרסום תגובה ←</button>
+</div>
+<p class="form-message" role="status">
+</p>
+</form>
+</section>
 </article>
 </main>
 <%- include('partials/footer') %>
