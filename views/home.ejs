@@ -1,0 +1,35 @@
+<%- include('partials/head', { sheet: 'feed' }) %>
+<nav class="category-nav" aria-label="קטגוריות">
+  <button class="active" data-category="" aria-pressed="true">כל החדשות</button>
+  <% categories.forEach(category => { %>
+<button data-category="<%= category %>" aria-pressed="false">
+<%= category %>
+</button>
+<% }) %>
+</nav>
+<main id="main" class="news-layout">
+  <section class="feed-area" aria-label="פיד חדשות">
+    <div class="section-title">
+<div>
+<span class="eyebrow">
+<i>
+</i> על סדר היום</span>
+<h1>העולם לא עוצר.<br>
+<em>גם הסקרנות שלכם.</em>
+</h1>
+</div>
+<div class="edition-stamp" aria-hidden="true">
+<span>THE DAILY WEB</span>
+<b>מבט<br>מקרוב.</b>
+<span>סקרנות היא התחלה</span>
+</div>
+</div>
+    <form class="feed-tools" id="filters" role="search">
+      <label class="search-field">
+<span aria-hidden="true">⌕</span>
+<input type="search" id="search" name="q" placeholder="איזה סיפור מחפשים?" aria-label="חיפוש לפי כותרת">
+</label>
+</form>
+</section>
+</main>
+<%- include('partials/footer') %>
