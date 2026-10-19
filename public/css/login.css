@@ -64,4 +64,43 @@
   .login-layout {
     margin-inline:48px;
   }
+
+}
+@media(max-width:950px) {
+  .login-intro {
+    padding:35px;
+  }
+  .login-panel {
+    padding:40px 30px;
+  }
+  .login-intro h1 {
+    font-size:43px;
+  }
+
+}
+@media(max-width:760px) {
+  .login-layout {
+    margin:15px 20px;
+    flex-direction:column;
+  }
+  .login-intro,.login-panel {
+    width:100%;
+    padding:30px;
+  }
+  .login-intro h1 {
+    font-size:35px;
+  }
+  .login-intro h1 br {
+    display:none;
+  }
+  .login-intro h1 br:after {
+    content:' ';
+  }
+  .login-intro p {
+    margin-bottom:0;
+  }
+  .giant-mark {
+    display:none;
+  }
+
 }
