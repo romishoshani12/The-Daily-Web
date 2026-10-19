@@ -111,3 +111,35 @@
   margin-bottom:10px;
   letter-spacing:-.4px;
 }
+.news-card p {
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.65;
+  margin-bottom:15px;
+}
+.card-byline {
+  display:flex;
+  justify-content:space-between;
+  font-size:12px;
+  color:var(--muted);
+  gap:10px;
+}
+.read-badge {
+  font-size:12px;
+  color:var(--green);
+}
+.news-card.lead {
+  width:100%;
+  position:relative;
+  border:0;
+  padding:0;
+  margin-bottom:5px;
+  overflow:hidden;
+  border-radius:7px;
+  background:var(--ink);
+}
+.lead .card-image {
+  height:390px;
+  border-radius:7px;
+  opacity:.65;
+}
