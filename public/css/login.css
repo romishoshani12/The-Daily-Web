@@ -1,0 +1,32 @@
+.login-layout {
+  max-width:1120px;
+  display:flex;
+  min-height:570px;
+  margin:30px auto 70px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  overflow:hidden;
+}
+.login-intro {
+  background:var(--green);
+  color:white;
+  padding:45px;
+  width:52%;
+  position:relative;
+  overflow:hidden;
+}
+.login-intro .eyebrow {
+  color:var(--lime);
+}
+.login-intro h1 {
+  font-size:54px;
+  line-height:1.2;
+  position:relative;
+  z-index:1;
+}
+.login-intro em {
+  color:var(--lime);
+}
+.login-intro p {
+  font-size:17px;
+}
