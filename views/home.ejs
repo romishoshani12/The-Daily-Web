@@ -29,7 +29,34 @@
 <span aria-hidden="true">⌕</span>
 <input type="search" id="search" name="q" placeholder="איזה סיפור מחפשים?" aria-label="חיפוש לפי כותרת">
 </label>
-</form>
-</section>
+      <label class="select-field">
+<span class="sr-only">מיון</span>
+<select id="sort">
+<option value="date">הכי חדשים</option>
+<option value="popular">הכי נקראים</option>
+</select>
+</label>
+      <label class="select-field">
+<span class="sr-only">מצב קריאה</span>
+<select id="seen">
+<option value="">כל הכתבות</option>
+<option value="no">טרם קראתי</option>
+<option value="yes">כבר קראתי</option>
+</select>
+</label>
+    </form>
+    <p class="result-count" id="result-count" aria-live="polite">טוענים את החדשות…</p>
+    <div class="feed-divider">
+<span>הסיפורים של היום</span>
+<span dir="ltr">THE DAILY READ</span>
+</div>
+    <div id="feed" class="feed">
+</div>
+    <div class="feed-end" id="feed-end">
+<button class="button outline" id="load-more" type="button">טעינת כתבות נוספות</button>
+<p id="feed-status" role="status">
+</p>
+</div>
+  </section>
 </main>
 <%- include('partials/footer') %>
