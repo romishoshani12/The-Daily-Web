@@ -144,3 +144,17 @@
   }
 
 }
+@media(max-width:950px) {
+  .work-actions {
+    flex-direction:column;
+    gap:9px;
+  }
+  .workspace-filter {
+    align-items:stretch;
+    flex-direction:column;
+  }
+  .workspace-filter .search-field {
+    max-width:none;
+  }
+
+}
