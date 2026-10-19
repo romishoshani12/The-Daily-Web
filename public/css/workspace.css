@@ -114,3 +114,33 @@
   background:#fff1ca;
   color:#775714;
 }
+.status.published {
+  background:#e5f1e3;
+  color:#30613a;
+}
+.status.returned {
+  background:#fae4dc;
+  color:#913e29;
+}
+.pager {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+  margin-top:25px;
+  font-size:14px;
+}
+.error-page {
+  text-align:center;
+  padding:100px 20px;
+  min-height:60vh;
+}
+.error-page .eyebrow {
+  justify-content:center;
+}
+@media(max-width:1400px) {
+  .staff-main {
+    margin-inline:48px;
+  }
+
+}
