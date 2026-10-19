@@ -30,3 +30,38 @@
 .login-intro p {
   font-size:17px;
 }
+.giant-mark {
+  position:absolute;
+  bottom:-75px;
+  left:5px;
+  font-size:240px;
+  line-height:1.2;
+  color:#ffffff08;
+  font-weight:900;
+  letter-spacing:-20px;
+  direction:ltr;
+}
+.login-panel {
+  width:48%;
+  background:white;
+  padding:60px 45px;
+}
+.login-panel h2 {
+  font-size:34px;
+  margin-bottom:10px;
+}
+.login-panel form {
+  margin-top:28px;
+}
+.login-panel label {
+  margin-bottom:20px;
+}
+.login-panel .back-link {
+  margin-top:23px;
+  font-size:12px;
+}
+@media(max-width:1400px) {
+  .login-layout {
+    margin-inline:48px;
+  }
+}
