@@ -38,4 +38,30 @@
     }
     return block;
   }
+  async function load() {
+    if (loading) return;
+    loading = true; more.disabled = true;
+    try {
+      const data = await DW.api('/api/articles/' + id + '/comments?before=' + encodeURIComponent(cursor));
+      data.items.forEach(comment => { if (!shown.has(comment._id)) { list.append(row(comment)); shown.add(comment._id); } });
+      cursor = data.nextCursor || ''; more.hidden = !data.hasMore;
+      if (!shown.size) list.append(DW.node('p', 'empty-comments muted', 'עדיין אין תגובות. מוזמנים לפתוח את השיחה.'));
+    } catch (error) { DW.toast(error.message); more.hidden = false; }
+    finally { loading = false; more.disabled = false; }
+  }
+  form.addEventListener('submit', async event => {
+    event.preventDefault(); const button = form.querySelector('button'); button.disabled = true;
+    const message = form.querySelector('.form-message'); message.textContent = '';
+    try {
+      const comment = await DW.api('/api/articles/' + id + '/comments', { method: 'POST', body: JSON.stringify(Object.fromEntries(new FormData(form))) });
+      list.querySelector('.empty-comments')?.remove(); list.prepend(row(comment)); shown.add(comment._id);
+      form.elements.body.value = ''; message.textContent = 'התגובה פורסמה. תודה שהצטרפתם לשיחה.';
+    } catch (error) { message.textContent = error.message; }
+    finally { button.disabled = false; }
+  });
+  more.addEventListener('click', load); load();
+  document.getElementById('copy-link').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(location.href); DW.toast('הקישור הועתק'); }
+    catch { DW.toast('אפשר להעתיק את הקישור משורת הכתובת.'); }
+  });
 })();
