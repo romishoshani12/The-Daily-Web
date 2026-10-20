@@ -110,3 +110,18 @@
   overflow-wrap:anywhere;
   margin-bottom:5px;
 }
+@media(max-width:1400px) {
+  .article-layout {
+    margin-inline:48px;
+  }
+
+}
+@media(max-width:1050px) {
+  .article-layout {
+    gap:30px;
+  }
+  .article-aside {
+    width:170px;
+  }
+
+}
