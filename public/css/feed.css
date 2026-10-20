@@ -290,3 +290,21 @@
   }
 
 }
+@media(max-width:1050px) {
+  .news-sidebar {
+    width:220px;
+  }
+  .news-layout {
+    gap:25px;
+  }
+  .feed-tools {
+    flex-wrap:wrap;
+  }
+  .feed-tools .search-field {
+    flex-basis:100%;
+  }
+  .select-field {
+    flex:1;
+  }
+
+}
