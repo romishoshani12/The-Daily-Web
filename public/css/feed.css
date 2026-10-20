@@ -404,3 +404,12 @@
 .news-card.lead { border-radius: 2px; border-inline-start: 5px solid var(--lime); }
 .lead .story-number { color: var(--lime); }
 .lead .card-image { height: 440px; }
+.lead .card-content { padding-top: 85px; }
+.weather-card { border-radius: 2px; border-top: 3px solid var(--green); }
+.editors-note { border-radius: 2px; border-bottom: 6px solid var(--lime); }
+.reading-guide button:hover, .reading-guide button.active { color: var(--green); background: var(--soft); }
+@media (max-width: 1050px) { .edition-stamp { display: none; } }
+@media (max-width: 760px) {
+  .lead .card-image { height: 480px; }
+  .feed-divider span:last-child { font-size: 9px; letter-spacing: 1px; }
+}
