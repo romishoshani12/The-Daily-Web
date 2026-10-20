@@ -37,3 +37,41 @@
   display:block;
   font-size:14px;
 }
+.byline>span>span {
+  display:block;
+  font-size:12px;
+  color:var(--muted);
+}
+.byline button {
+  margin-right:auto;
+}
+.article-image {
+  width:100%;
+  max-height:480px;
+  object-fit:cover;
+  border-radius:7px;
+}
+.article-body {
+  font-size:19px;
+  line-height:1.95;
+  margin:30px 0;
+  overflow-wrap:anywhere;
+}
+.article-aside {
+  width:200px;
+  flex-shrink:0;
+  border-top:3px solid var(--green);
+  margin-top:73px;
+  padding-top:25px;
+}
+.article-aside h2 {
+  font-size:30px;
+}
+.article-aside p {
+  font-size:14px;
+  color:var(--muted);
+}
+.article-aside a {
+  font-size:14px;
+  color:var(--green);
+}
