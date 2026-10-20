@@ -1,2 +1,10 @@
 const router = require('express').Router();
+const { requireRole } = require('../middleware/security');
+const article = require('../controllers/article');
+const comments = require('../controllers/comments');
+router.get('/articles/:id', article.article);
+router.get('/api/articles/:id/comments', comments.list);
+router.post('/api/articles/:id/comments', comments.create);
+router.patch('/api/comments/:id', requireRole('editor'), comments.update);
+router.delete('/api/comments/:id', requireRole('editor'), comments.remove);
 module.exports = router;
