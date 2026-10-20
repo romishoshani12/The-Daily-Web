@@ -1,0 +1,39 @@
+.article-layout {
+  max-width:1160px;
+  margin:30px auto;
+  display:flex;
+  align-items:flex-start;
+  gap:65px;
+}
+.full-article {
+  flex:1;
+  min-width:0;
+}
+.article-heading {
+  display:flex;
+  gap:15px;
+  align-items:center;
+  margin-bottom:20px;
+}
+.full-article h1 {
+  font-size:48px;
+  line-height:1.2;
+  margin-bottom:20px;
+}
+.article-summary {
+  font-size:21px;
+  color:var(--muted);
+  line-height:1.65;
+}
+.byline {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  border-top:1px solid var(--line);
+  padding:20px 0;
+  margin-top:25px;
+}
+.byline strong {
+  display:block;
+  font-size:14px;
+}
