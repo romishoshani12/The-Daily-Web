@@ -48,4 +48,44 @@
       ctx.fillText(new Date(time).toLocaleString('he-IL', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }), x(time), height - 14);
     }
   }
+  async function load() {
+    const current = ++generation;
+    try {
+      const data = await DW.api('/api/analytics/' + select.value + '?days=' + document.getElementById('analytics-days').value);
+      if (current !== generation) return; chart = data; draw();
+      document.getElementById('chart-title').textContent = data.title;
+      document.getElementById('range-total').textContent = data.points.reduce((n, p) => n + p.count, 0).toLocaleString('he-IL');
+      document.getElementById('all-total').textContent = data.total.toLocaleString('he-IL');
+      const events = data.events.map((event, index) => ({ ...event, version: index + 1 })).filter(e => +new Date(e.at) >= +new Date(data.since) && +new Date(e.at) <= +new Date(data.until));
+      document.getElementById('updates-total').textContent = events.length;
+      document.getElementById('analytics-message').textContent = data.points.length ? '' : 'אין עדיין נתוני צפייה בטווח הזמן הזה.';
+      const eventBox = document.getElementById('publication-events'); eventBox.replaceChildren();
+      events.forEach((event, index) => eventBox.append(DW.node('span', '', 'V' + event.version + ' · פורסם ' + DW.time(event.at))));
+      const table = document.getElementById('stats-table'); table.replaceChildren();
+      data.points.forEach(point => {
+        const row = DW.node('tr'); const actions = DW.node('td');
+        const edit = DW.node('button', 'text-button', 'תיקון'); const remove = DW.node('button', 'text-button danger', 'מחיקה');
+        edit.addEventListener('click', async () => {
+          const answer = prompt('מספר הצפיות המתוקן:', point.count); if (answer === null) return;
+          try { await DW.api('/api/stats/' + point._id, { method: 'PATCH', body: JSON.stringify({ count: Number(answer) }) }); load(); }
+          catch (error) { DW.toast(error.message); }
+        });
+        remove.addEventListener('click', async () => {
+          if (!confirm('למחוק את רשומת הצפייה?')) return;
+          try { await DW.api('/api/stats/' + point._id, { method: 'DELETE' }); load(); }
+          catch (error) { DW.toast(error.message); }
+        });
+        actions.append(edit, remove); row.append(DW.node('td', '', DW.time(point.hour)), DW.node('td', '', point.count), actions); table.append(row);
+      });
+    } catch (error) { document.getElementById('analytics-message').textContent = error.message; }
+  }
+  document.getElementById('stat-form').addEventListener('submit', async event => {
+    event.preventDefault(); if (!select.value) return;
+    const form = event.currentTarget;
+    try { await DW.api('/api/analytics/' + select.value, { method: 'POST', body: JSON.stringify({ hour: new Date(form.elements.hour.value).toISOString(), count: Number(form.elements.count.value) }) }); form.reset(); load(); }
+    catch (error) { DW.toast(error.message); }
+  });
+  select.addEventListener('change', load); document.getElementById('analytics-days').addEventListener('change', load);
+  document.getElementById('analytics-search').addEventListener('input', DW.debounce(articles));
+  new ResizeObserver(draw).observe(canvas); articles();
 })();
