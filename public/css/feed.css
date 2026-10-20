@@ -308,3 +308,59 @@
   }
 
 }
+@media(max-width:760px) {
+  .category-nav {
+    margin-inline:20px;
+    gap:25px;
+  }
+  .news-layout {
+    margin:26px 20px;
+    display:block;
+  }
+  .news-sidebar {
+    width:100%;
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    margin-top:35px;
+  }
+  .weather-card,.editors-note {
+    width:calc(50% - 10px);
+    margin:0;
+  }
+  .reading-guide {
+    width:100%;
+    margin-top:8px;
+  }
+  .demo-note {
+    margin-top:0;
+  }
+  .section-title h1 {
+    font-size:34px;
+  }
+  .issue-number {
+    display:none;
+  }
+  .lead .card-image {
+    height:390px;
+  }
+  .lead .card-content {
+    padding:70px 20px 20px;
+  }
+  .lead h2 {
+    font-size:28px;
+  }
+  .news-card h2 {
+    font-size:21px;
+  }
+  .card-image {
+    height:165px;
+  }
+  .news-card p {
+    font-size:14px;
+  }
+  .card-byline {
+    flex-wrap:wrap;
+  }
+
+}
