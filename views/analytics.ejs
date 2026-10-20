@@ -58,7 +58,21 @@
 </label>
 <label>צפיות<input name="count" type="number" min="0" step="1" required>
 </label>
+<button class="button" type="submit">הוספת רשומה</button>
 </form>
+<div class="table-scroll">
+<table>
+<thead>
+<tr>
+<th>שעה</th>
+<th>צפיות</th>
+<th>פעולות</th>
+</tr>
+</thead>
+<tbody id="stats-table">
+</tbody>
+</table>
+</div>
 </details>
 </main>
 <%- include('partials/footer') %>
