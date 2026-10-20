@@ -1,0 +1,44 @@
+<%- include('partials/head', { sheet: 'staff' }) %>
+<%- include('partials/staff-nav') %>
+<main id="main" class="staff-main" data-mode="<%= mode %>">
+<div class="workspace-heading">
+<div>
+<span class="eyebrow">THE NEWSROOM / <%= mode === 'editor' ? 'EDITOR' : 'REPORTER' %>
+</span>
+<h1>
+<%= mode === 'editor' ? 'הסיפורים הבאים מתחילים כאן.' : 'המילים שלכם. הסיפור הבא.' %>
+</h1>
+<p class="muted">
+<%= mode === 'editor' ? 'בודקים, מדייקים ונותנים לסיפורים לצאת לעולם.' : 'כל הכתבות, הטיוטות וההערות שלכם — במקום אחד.' %>
+</p>
+</div>
+<button class="button" id="new-article">＋ כתבה חדשה</button>
+</div>
+<div class="workspace-filter">
+<div class="status-tabs">
+<button class="active" data-status="">הכול</button>
+<% Object.entries(stateLabels).forEach(([key,label]) => { %>
+<button data-status="<%= key %>">
+<%= label %>
+</button>
+<% }) %>
+</div>
+<label class="search-field">
+<span>⌕</span>
+<input id="work-search" type="search" placeholder="חיפוש בכתבות" aria-label="חיפוש בכתבות">
+</label>
+</div>
+<p id="work-count" class="result-count" aria-live="polite">
+</p>
+<div id="work-list" class="work-list">
+</div>
+<div class="pager">
+<button id="previous" class="button outline">→ הקודם</button>
+<span id="page-label">
+</span>
+<button id="next" class="button outline">הבא ←</button>
+</div>
+</main>
+<script src="/js/workspace.js" defer>
+</script>
+<%- include('partials/footer') %>
