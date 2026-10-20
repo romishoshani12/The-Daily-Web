@@ -223,3 +223,34 @@
   position:relative;
   overflow:hidden;
 }
+.editors-note .eyebrow {
+  color:var(--lime);
+}
+.editors-note h2 {
+  font-size:32px;
+  line-height:1.25;
+  margin-bottom:20px;
+}
+.editors-note p {
+  color:#e2ebdf;
+  font-size:14px;
+  line-height:1.8;
+}
+.note-rule {
+  display:block;
+  width:40px;
+  height:3px;
+  background:var(--lime);
+  margin:23px 0;
+}
+.editors-note>span:last-child {
+  font-size:12px;
+  color:var(--lime);
+}
+.reading-guide {
+  margin-top:30px;
+}
+.reading-guide h2 {
+  font-size:16px;
+  margin-bottom:10px;
+}
