@@ -1,0 +1,34 @@
+<%- include('partials/head', { sheet: 'staff' }) %>
+<%- include('partials/staff-nav') %>
+<main id="main" class="staff-main">
+<div class="workspace-heading">
+<div>
+<span class="eyebrow">IMPACT ANALYTICS</span>
+<h1>איזה שינוי עשה הסיפור?</h1>
+<p class="muted">צפיות לאורך זמן, לפני ואחרי כל עדכון שפורסם.</p>
+</div>
+</div>
+<div class="analytics-controls">
+<label>איתור כתבה<input type="search" id="analytics-search" placeholder="חיפוש לפי כותרת">
+</label>
+<label>כתבה<select id="analytics-article" aria-label="בחירת כתבה">
+</select>
+</label>
+<label>טווח זמן<select id="analytics-days">
+<option value="1">24 שעות</option>
+<option value="7" selected>7 ימים</option>
+<option value="30">30 ימים</option>
+</select>
+</label>
+</div>
+<div class="metrics">
+<div>
+<span>צפיות בטווח הנבחר</span>
+<strong id="range-total">—</strong>
+</div>
+<div>
+<span>צפיות בכל הזמנים</span>
+</div>
+</div>
+</main>
+<%- include('partials/footer') %>
