@@ -165,3 +165,12 @@
 .reading-progress progress { display: block; width: 100%; height: 4px; border: 0; appearance: none; background: transparent; }
 .reading-progress progress::-webkit-progress-bar { background: transparent; }
 .reading-progress progress::-webkit-progress-value { background: var(--green); }
+.reading-progress progress::-moz-progress-bar { background: var(--green); }
+.article-heading { border-top: 3px double var(--green); padding-top: 18px; }
+.article-summary { border-inline-start: 3px solid var(--lime); padding-inline-start: 18px; }
+.full-article > .article-body { max-width: 720px; }
+.comments .section-heading .eyebrow { color: var(--green); margin-bottom: 8px; }
+.comments .form-bottom { justify-content: flex-end; }
+.comments form { border: 1px solid var(--line); border-radius: 2px; }
+.article-aside { position: sticky; top: 36px; }
+@media (max-width: 760px) { .article-aside { position: static; } }
