@@ -1,0 +1,77 @@
+<%- include('partials/head', { sheet: 'article' }) %>
+<div class="reading-progress" aria-hidden="true">
+<progress id="reading-progress" max="100" value="0">
+</progress>
+</div>
+<main id="main" class="article-layout" data-article-id="<%= article._id %>" data-editor="<%= user?.role === 'editor' %>">
+  <article class="full-article">
+    <a class="back-link" href="/">→ חזרה לכל הסיפורים</a>
+    <div class="article-heading">
+<span class="tag">
+<%= article.published.category %>
+</span>
+<span class="muted">מהדורת הדגמה</span>
+</div>
+    <h1>
+<%= article.published.title %>
+</h1>
+<p class="article-summary">
+<%= article.published.summary %>
+</p>
+    <div class="byline">
+<span class="avatar">
+<%= article.author?.name?.slice(0,1) || 'מ' %>
+</span>
+<span>
+<strong>
+<%= article.author?.name || 'מערכת' %>
+</strong>
+<span>
+<%= date(article.publishedAt) %> · <%= Math.max(1, Math.ceil(article.published.body.split(/\s+/).length / 200)) %> דקות קריאה</span>
+</span>
+<button class="text-button" id="copy-link">העתקת קישור ↗</button>
+</div>
+    <img class="article-image" src="<%= article.published.image %>" alt="איור מלווה לכתבה" fetchpriority="high">
+    <div class="article-body" id="article-body">
+<% article.published.body.split(/\n+/).filter(Boolean).forEach(paragraph => { %>
+<p>
+<%= paragraph %>
+</p>
+<% }) %>
+</div>
+    <section class="comments" aria-labelledby="comments-title">
+<div class="section-heading">
+<div>
+<span class="eyebrow">תגובות הקוראים</span>
+<h2 id="comments-title">השיחה ממשיכה כאן</h2>
+</div>
+</div>
+      <form id="comment-form">
+<label>איך קוראים לכם?<input name="name" maxlength="60" required placeholder="השם שיופיע בתגובה">
+</label>
+<label>מה דעתכם?<textarea name="body" maxlength="1200" rows="3" required placeholder="מוסיפים נקודת מבט לשיחה…">
+</textarea>
+</label>
+<div class="form-bottom">
+<button class="button" type="submit">פרסום תגובה ←</button>
+</div>
+<p class="form-message" role="status">
+</p>
+</form>
+      <div id="comments-list" aria-live="polite">
+</div>
+<button id="more-comments" class="button outline" hidden>תגובות נוספות</button>
+    </section>
+  </article>
+  <aside class="article-aside">
+<span class="eyebrow">בין השורות</span>
+<h2>סיפור טוב<br>פותח שיחה.</h2>
+<p>יש לכם מחשבה, שאלה או זווית נוספת? נשמח לקרוא בתגובות.</p>
+<a href="#comments-title">לתגובות ↓</a>
+<hr>
+<a href="/">לכל החדשות ←</a>
+</aside>
+</main>
+<script src="/js/article.js" defer>
+</script>
+<%- include('partials/footer') %>
