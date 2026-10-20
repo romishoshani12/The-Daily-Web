@@ -30,6 +30,15 @@
 <option value="editor">עורך</option>
 </select>
 </label>
+<label>סיסמה<input name="password" type="password" minlength="10" maxlength="256" autocomplete="new-password" required>
+<span class="muted">בעריכה: להשאיר ריק לשמירת הסיסמה הנוכחית.</span>
+</label>
+<label class="checkbox">
+<input name="active" type="checkbox" checked> משתמש פעיל</label>
+<p class="form-message" role="status">
+</p>
+<button class="button full" type="submit">שמירת משתמש</button>
+<button class="text-button" id="reset-user" type="button">ביטול / משתמש חדש</button>
 </form>
 </aside>
 </div>
