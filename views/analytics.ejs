@@ -28,7 +28,37 @@
 </div>
 <div>
 <span>צפיות בכל הזמנים</span>
+<strong id="all-total">—</strong>
+</div>
+<div>
+<span>פרסומים ועדכונים בטווח</span>
+<strong id="updates-total">—</strong>
 </div>
 </div>
+<section class="chart-panel">
+<div class="section-heading">
+<h2 id="chart-title">מגמת צפיות</h2>
+<span class="legend">
+<i>
+</i> צפיות לשעה <b>
+</b> פרסום גרסה</span>
+</div>
+<p id="analytics-message" role="status">
+</p>
+<canvas id="impact-chart" height="360" role="img" aria-label="גרף צפיות לפי שעה וסימוני פרסום; הנתונים זמינים בטבלה בהמשך">
+</canvas>
+<div id="publication-events" class="event-list">
+</div>
+</section>
+<details class="data-details">
+<summary>נתוני הגרף וניהול רשומות צפייה</summary>
+<p class="muted">תיקון ידני נועד לטיפול בנתוני דמה שגויים. הפעולות משנות גם את סך הצפיות.</p>
+<form id="stat-form" class="form-row">
+<label>שעה<input name="hour" type="datetime-local" required>
+</label>
+<label>צפיות<input name="count" type="number" min="0" step="1" required>
+</label>
+</form>
+</details>
 </main>
 <%- include('partials/footer') %>
