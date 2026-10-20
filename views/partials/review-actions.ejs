@@ -1,0 +1,7 @@
+<% if (article.status === 'pending' && user.role === 'editor') { %>
+<button class="button full" id="publish-article">אישור ופרסום ←</button>
+<label>הערה לכתב<textarea id="editor-note" maxlength="2000" rows="4" placeholder="מה צריך לתקן?">
+</textarea>
+</label>
+<button class="button outline full" id="return-article">החזרה לתיקונים</button>
+<% } %>
