@@ -1,0 +1,96 @@
+<%- include('partials/head', { sheet: 'feed' }) %>
+<nav class="category-nav" aria-label="קטגוריות">
+  <button class="active" data-category="" aria-pressed="true">כל החדשות</button>
+  <% categories.forEach(category => { %>
+<button data-category="<%= category %>" aria-pressed="false">
+<%= category %>
+</button>
+<% }) %>
+</nav>
+<main id="main" class="news-layout">
+  <section class="feed-area" aria-label="פיד חדשות">
+    <div class="section-title">
+<div>
+<span class="eyebrow">
+<i>
+</i> על סדר היום</span>
+<h1>העולם לא עוצר.<br>
+<em>גם הסקרנות שלכם.</em>
+</h1>
+</div>
+<div class="edition-stamp" aria-hidden="true">
+<span>THE DAILY WEB</span>
+<b>מבט<br>מקרוב.</b>
+<span>סקרנות היא התחלה</span>
+</div>
+</div>
+    <form class="feed-tools" id="filters" role="search">
+      <label class="search-field">
+<span aria-hidden="true">⌕</span>
+<input type="search" id="search" name="q" placeholder="איזה סיפור מחפשים?" aria-label="חיפוש לפי כותרת">
+</label>
+      <label class="select-field">
+<span class="sr-only">מיון</span>
+<select id="sort">
+<option value="date">הכי חדשים</option>
+<option value="popular">הכי נקראים</option>
+</select>
+</label>
+      <label class="select-field">
+<span class="sr-only">מצב קריאה</span>
+<select id="seen">
+<option value="">כל הכתבות</option>
+<option value="no">טרם קראתי</option>
+<option value="yes">כבר קראתי</option>
+</select>
+</label>
+    </form>
+    <p class="result-count" id="result-count" aria-live="polite">טוענים את החדשות…</p>
+    <div class="feed-divider">
+<span>הסיפורים של היום</span>
+<span dir="ltr">THE DAILY READ</span>
+</div>
+    <div id="feed" class="feed">
+</div>
+    <div class="feed-end" id="feed-end">
+<button class="button outline" id="load-more" type="button">טעינת כתבות נוספות</button>
+<p id="feed-status" role="status">
+</p>
+</div>
+  </section>
+  <aside class="news-sidebar">
+    <section class="weather-card">
+<div class="sidebar-heading">
+<h2>מבט החוצה</h2>
+<span>↗</span>
+</div>
+<div id="weather" aria-live="polite">בודקים את מזג האוויר…</div>
+<a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo ↗</a>
+</section>
+    <section class="editors-note">
+<span class="eyebrow">מהמערכת</span>
+<h2>יותר מכותרת.<br>עוד נקודת מבט.</h2>
+<p>טכנולוגיה שמשנה הרגלים, תרבות שמעוררת מחשבה ומדע שמרחיב אופקים.</p>
+<span class="note-rule">
+</span>
+<span>קחו רגע. יש מה לגלות.</span>
+</section>
+    <section class="reading-guide">
+<h2>בוחרים כיוון</h2>
+<% categories.slice(0,4).forEach((category, i) => { %>
+<button data-category="<%= category %>" aria-pressed="false">
+<span class="muted">0<%= i+1 %>
+</span>
+<span>
+<%= category %>
+</span>
+<span>←</span>
+</button>
+<% }) %>
+</section>
+    <p class="demo-note">מהדורת הדגמה.<br>הסיפורים והנתונים להמחשה בלבד.</p>
+  </aside>
+</main>
+<script src="/js/feed.js" defer>
+</script>
+<%- include('partials/footer') %>
