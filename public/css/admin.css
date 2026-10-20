@@ -76,3 +76,26 @@
   max-height:420px;
   margin-top:20px;
 }
+table {
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+}
+th,td {
+  padding:12px;
+  border-bottom:1px solid var(--line);
+  text-align:right;
+}
+td button {
+  margin-left:14px;
+}
+@media(max-width:950px) {
+  .analytics-controls {
+    flex-wrap:wrap;
+  }
+  .analytics-controls label {
+    flex:1;
+    min-width:180px;
+  }
+
+}
