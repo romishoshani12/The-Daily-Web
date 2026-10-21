@@ -1,2 +1,10 @@
 const router = require('express').Router();
+const { requireRole } = require('../middleware/security');
+const admin = require('../controllers/admin');
+const editor = requireRole('editor');
+router.get('/users', editor, (req, res) => res.render('users', { title: 'אנשי המערכת' }));
+router.get('/api/users', editor, admin.users);
+router.post('/api/users', editor, admin.createUser);
+router.patch('/api/users/:id', editor, admin.updateUser);
+router.delete('/api/users/:id', editor, admin.deleteUser);
 module.exports = router;

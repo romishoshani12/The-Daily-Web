@@ -1,0 +1,22 @@
+<% if (user.role === 'editor' && article.published) { %>
+<details class="published-comparison" open>
+<summary>הגרסה המאושרת שמוצגת כרגע לקוראים — להשוואה</summary>
+<h2>
+<%= article.published.title %>
+</h2>
+<p>
+<%= article.published.summary %>
+</p>
+<p class="muted">
+<%= article.published.category %> · <%= date(article.publishedAt) %>
+</p>
+<img class="comparison-image" src="<%= article.published.image %>" alt="התמונה בגרסה המאושרת">
+<div class="article-body">
+<% article.published.body.split(/\n+/).filter(Boolean).forEach(p => { %>
+<p>
+<%= p %>
+</p>
+<% }) %>
+</div>
+</details>
+<% } %>

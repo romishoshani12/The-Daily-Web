@@ -1,0 +1,48 @@
+<%- include('partials/head', { sheet: 'staff' }) %>
+<%- include('partials/staff-nav') %>
+<main id="main" class="staff-main">
+<div class="workspace-heading">
+<div>
+<span class="eyebrow">THE PEOPLE BEHIND THE STORIES</span>
+<h1>אנשי המערכת.</h1>
+<p class="muted">ניהול משתמשים, תפקידים וגישה לסביבת העבודה.</p>
+</div>
+</div>
+<div class="users-layout">
+<section>
+<label class="search-field">
+<span>⌕</span>
+<input id="user-search" type="search" aria-label="חיפוש משתמשים" placeholder="חיפוש שם או שם משתמש">
+</label>
+<div id="users-list" class="users-list">
+</div>
+</section>
+<aside class="user-panel">
+<h2 id="user-form-title">צירוף איש צוות</h2>
+<form id="user-form">
+<input name="id" type="hidden">
+<label>שם מלא<input name="name" maxlength="80" required>
+</label>
+<label>שם משתמש<input name="username" minlength="3" maxlength="80" dir="ltr" pattern="[a-zA-Z0-9._-]+" required>
+</label>
+<label>תפקיד<select name="role">
+<option value="reporter">כתב</option>
+<option value="editor">עורך</option>
+</select>
+</label>
+<label>סיסמה<input name="password" type="password" minlength="10" maxlength="256" autocomplete="new-password" required>
+<span class="muted">בעריכה: להשאיר ריק לשמירת הסיסמה הנוכחית.</span>
+</label>
+<label class="checkbox">
+<input name="active" type="checkbox" checked> משתמש פעיל</label>
+<p class="form-message" role="status">
+</p>
+<button class="button full" type="submit">שמירת משתמש</button>
+<button class="text-button" id="reset-user" type="button">ביטול / משתמש חדש</button>
+</form>
+</aside>
+</div>
+</main>
+<script src="/js/users.js" defer>
+</script>
+<%- include('partials/footer') %>

@@ -1,0 +1,20 @@
+.published-comparison {
+  margin-top:30px;
+  background:white;
+  border:1px solid var(--line);
+  padding:24px;
+  border-radius:7px;
+}
+.published-comparison summary {
+  cursor:pointer;
+  font-weight:600;
+  margin-bottom:15px;
+}
+.published-comparison .article-body {
+  white-space:pre-wrap;
+  line-height:1.9;
+  font-size:17px;
+  max-width:850px;
+}
+.comparison-image { display: block; width: 240px; max-width: 100%; margin: 16px 0; border-radius: 3px; }
+.published-comparison { border-inline-start: 4px solid var(--lime); }

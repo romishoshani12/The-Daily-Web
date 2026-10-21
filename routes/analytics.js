@@ -1,2 +1,10 @@
 const router = require('express').Router();
+const { requireRole } = require('../middleware/security');
+const admin = require('../controllers/analytics');
+const editor = requireRole('editor');
+router.get('/analytics', editor, (req, res) => res.render('analytics', { title: 'השפעת הסיפורים' }));
+router.get('/api/analytics/:id', editor, admin.analytics);
+router.post('/api/analytics/:id', editor, admin.createStat);
+router.patch('/api/stats/:id', editor, admin.updateStat);
+router.delete('/api/stats/:id', editor, admin.deleteStat);
 module.exports = router;
