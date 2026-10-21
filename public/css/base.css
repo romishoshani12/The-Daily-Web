@@ -363,7 +363,7 @@ em {
 }
 .footer-logo span {
   color:var(--green);
-  margin-left:10px;
+  margin-inline-start:10px;
 }
 .toast {
   position:fixed;

@@ -4,7 +4,7 @@ function fail(message, status = 400) {
 }
 function text(value, max, required = true) {
   if (typeof value !== 'string' || value.length > max || (required && !value.trim())) {
-    fail('יש למלא את השדות כנדרש ולשמור על מגבלת האורך.');
+    fail('חלק מהשדות ריקים או ארוכים מדי. בדקו אותם ונסו שוב.');
   }
   return value.trim();
 }
@@ -17,7 +17,7 @@ function content(body, complete = false) {
   if (!CATEGORIES.includes(result.category)) fail('קטגוריה לא תקינה.');
   if (!/^\/images\/[a-z-]+\.svg$/.test(result.image)) {
     let url; try { url = new URL(result.image); } catch { fail('כתובת התמונה אינה תקינה.'); }
-    if (url.protocol !== 'https:') fail('תמונה חיצונית חייבת להשתמש ב־HTTPS.');
+    if (url.protocol !== 'https:') fail('כתובת של תמונה חיצונית צריכה להתחיל ב־HTTPS.');
   }
   return result;
 }

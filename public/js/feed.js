@@ -13,7 +13,7 @@
     content.append(DW.node('span', 'story-number', (lead ? 'הסיפור הפותח / ' : '') + String(position).padStart(2, '0')));
     const meta = DW.node('div', 'card-meta'); meta.append(DW.node('span', 'tag', item.category), DW.node('span', '', DW.date(item.publishedAt)));
     if (item.seen) meta.append(DW.node('span', 'read-badge', '✓ נקראה'));
-    const byline = DW.node('div', 'card-byline'); byline.append(DW.node('span', '', item.author), DW.node('span', '', item.views.toLocaleString('he-IL') + ' צפיות · לקריאה ←'));
+    const byline = DW.node('div', 'card-byline'); byline.append(DW.node('bdi', '', item.author), DW.node('span', '', DW.count(item.views, 'צפייה אחת', 'צפיות') + ' · לקריאה ←'));
     content.append(meta, DW.node('h2', '', item.title), DW.node('p', '', item.summary), byline);
     link.append(image, content); article.append(link); return article;
   }
@@ -30,7 +30,7 @@
       const data = await DW.api('/api/articles?' + params, { signal: request.signal });
       if (current !== generation) return;
       data.items.forEach((item, i) => feed.append(card(item, page === 1 && i === 0, (page - 1) * 20 + i + 1)));
-      document.getElementById('result-count').textContent = data.count.toLocaleString('he-IL') + ' סיפורים' + (category ? ' · ' + category : ' מכל הזוויות');
+      document.getElementById('result-count').textContent = DW.count(data.count, 'סיפור אחד', 'סיפורים') + (category ? ' · ' + category : ' מכל הזוויות');
       more.textContent = 'טעינת כתבות נוספות';
       hasMore = data.hasMore; page++; more.hidden = !hasMore;
       status.textContent = hasMore ? '' : data.count ? 'הגעתם לסוף. מחר מחכים כאן סיפורים חדשים.' : '';
@@ -67,7 +67,7 @@
       weatherExpiry = setTimeout(() => box.replaceChildren(DW.node('p', '', 'ממתינים לנתוני מזג אוויר מעודכנים.')), remaining);
       box.replaceChildren();
       const main = DW.node('div', 'weather-main'); main.append(DW.node('span', 'weather-temp', Math.round(data.temperature) + '°'), DW.node('span', 'weather-icon', data.code < 3 ? '☀' : '☁'));
-      box.append(main, DW.node('p', '', data.city), DW.node('span', 'weather-time', 'נתונים מ־' + new Date(data.observedAt).toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' })));
+      box.append(main, DW.node('p', '', data.city), DW.node('span', 'weather-time', 'נכון ל־' + new Date(data.observedAt).toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' })));
     } catch { box.replaceChildren(DW.node('p', '', 'נתוני מזג האוויר אינם זמינים כרגע.')); }
   }
   weather(); setInterval(weather, 5 * 60000);

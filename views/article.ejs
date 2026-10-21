@@ -23,10 +23,10 @@
 </span>
 <span>
 <strong>
-<%= article.author?.name || 'מערכת' %>
+<bdi><%= article.author?.name || 'המערכת' %></bdi>
 </strong>
 <span>
-<%= date(article.publishedAt) %> · <%= Math.max(1, Math.ceil(article.published.body.split(/\s+/).length / 200)) %> דקות קריאה</span>
+<% const minutes = Math.max(1, Math.ceil(article.published.body.split(/\s+/).length / 200)); %><%= date(article.publishedAt) %> · <%= minutes === 1 ? 'דקת קריאה אחת' : minutes + ' דקות קריאה' %></span>
 </span>
 <button class="text-button" id="copy-link">העתקת קישור ↗</button>
 </div>

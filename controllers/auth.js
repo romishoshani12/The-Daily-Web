@@ -6,7 +6,7 @@ const { text, fail } = require('../services/validation');
 const { cookieOptions } = require('../middleware/security');
 const { take } = require('../services/rate-limit');
 exports.login = async (req, res) => {
-  if (!await take('login:' + hash(req.ip), 12, 60000)) fail('יותר מדי ניסיונות התחברות. נסו בעוד דקה.', 429);
+  if (!await take('login:' + hash(req.ip), 12, 60000)) fail('יותר מדי ניסיונות התחברות. נסו שוב בעוד דקה.', 429);
   const username = text(req.body.username, 80).toLowerCase();
   const password = text(req.body.password, 256);
   const user = await User.findOne({ username, active: true }).select('+passwordHash');

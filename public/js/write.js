@@ -7,7 +7,7 @@
   let lastSaved = JSON.stringify(Object.fromEntries(new FormData(form)));
   function fields() { return Object.fromEntries(new FormData(form)); }
   function count() {
-    document.getElementById('word-count').textContent = form.elements.body.value.trim().split(/\s+/).filter(Boolean).length + ' מילים';
+    document.getElementById('word-count').textContent = DW.count(form.elements.body.value.trim().split(/\s+/).filter(Boolean).length, 'מילה אחת', 'מילים');
   }
   async function pump() {
     if (running) return running;
@@ -15,7 +15,7 @@
       while (dirty) {
         dirty = false; const data = fields(); const snapshot = JSON.stringify(data);
         if (snapshot === lastSaved) continue;
-        saveState.textContent = 'שומר את השינויים…';
+        saveState.textContent = 'שומרים את השינויים…';
         try {
           const result = await DW.api('/api/work/articles/' + id, { method: 'PATCH', body: JSON.stringify({ ...data, revision }), keepalive: new Blob([JSON.stringify(data)]).size < 60000 });
           revision = result.revision; lastSaved = snapshot; failed = false; retry.hidden = true;
@@ -45,7 +45,7 @@
     const buttons = main.querySelectorAll('aside button'); buttons.forEach(b => { b.disabled = true; });
     try {
       await pump();
-      if (dirty || failed) throw new Error('יש להשלים את השמירה לפני שליחת הכתבה.');
+      if (dirty || failed) throw new Error('השינויים עדיין לא נשמרו. בדקו את החיבור לרשת ונסו שוב.');
       await DW.api('/api/work/articles/' + id + path, { method: 'POST', body: JSON.stringify(body) });
       location.href = main.dataset.editor === 'true' ? '/editor' : '/reporter';
     } catch (error) { message.textContent = error.message; buttons.forEach(b => { b.disabled = false; }); }

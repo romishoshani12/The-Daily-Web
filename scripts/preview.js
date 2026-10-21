@@ -56,5 +56,5 @@ app.get('/api/articles/:id/comments', (req, res) => {
   ], hasMore: false });
 });
 app.get('/api/weather', (req, res) => res.status(503).json({ error: 'בתצוגת העיצוב אין נתוני מזג אוויר חיים.' }));
-app.use('/api', (req, res) => res.status(503).json({ error: 'זו תצוגת עיצוב בלבד. לשמירה ולהתחברות הפעילו את המערכת המלאה עם MongoDB לפי README.' }));
+app.use('/api', (req, res) => res.status(503).json({ error: 'זוהי תצוגת עיצוב בלבד. כדי לשמור ולהתחבר, הפעילו את המערכת המלאה עם MongoDB לפי ה־README.' }));
 app.listen(process.env.PREVIEW_PORT || 3001, '0.0.0.0', () => console.log('Visual preview at http://localhost:' + (process.env.PREVIEW_PORT || 3001)));
