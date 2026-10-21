@@ -20,6 +20,20 @@ const titles = [
   'ללמוד מעבר לגבול: איך רעיון מקומי מגיע רחוק'
 ];
 const images = ['technology', 'science', 'culture', 'environment', 'sport', 'world'];
+const sampleComments = [
+  { name: 'קוראת סקרנית', body: 'נקודת מבט מעניינת מאוד. אשמח לקרוא כתבת המשך בנושא הזה.' },
+  { name: 'איתי', body: 'תודה על הסיפור ועל ההסבר הנגיש והברור.' },
+  { name: 'מיכל', body: 'נושא חשוב שנוגע לרבים מאיתנו. מעורר מחשבה על האופן שבו הדברים מתפתחים.' },
+  { name: 'דניאל', body: 'ניתוח מעמיק ומדויק. טוב לראות עיתונות איכותית שמתמקדת בפרטים.' },
+  { name: 'שירה ל.', body: 'מפתיע לגלות איך צעד קטן יכול להוביל לשינוי כל כך משמעותי.' },
+  { name: 'יוסי כהן', body: 'מסכים עם רוב הדברים, אך יש עוד זווית שכדאי לקחת בחשבון בתחום הזה.' },
+  { name: 'תמר', body: 'הדוגמאות שהבאתם ממחישות מצוין את המורכבות של הסוגיה.' },
+  { name: 'עומר ר.', body: 'מרתק. במיוחד אהבתי את החיבור שבין הנתונים למציאות היומיומית בשטח.' },
+  { name: 'נועה ברק', body: 'כתבה מצוינת! שתפתי עם עמיתים לעבודה, עורר אצלנו דיון פורה.' },
+  { name: 'אלון', body: 'יופי של סקירה. האם מתוכננים מחקרים נוספים בתחום בקרוב?' },
+  { name: 'מאיה ש.', body: 'כל הכבוד על הבאת הקולות המקומיים, זה מה שבאמת יוצר את ההבדל.' },
+  { name: 'גיא', body: 'הסבר בהיר ומאיר עיניים על נושא שלא מרבים לעסוק בו בעומק כזה.' }
+];
 async function seed() {
   const password = process.env.SEED_PASSWORD;
   if (!password || password.length < 10) throw new Error('Set SEED_PASSWORD to at least 10 characters in .env before seeding.');
@@ -63,10 +77,23 @@ async function seed() {
       points.push({ article: saved[i]._id, hour, count }); total += count;
     }
     await Article.updateOne({ _id: saved[i]._id }, { views: total });
-    comments.push({ article: saved[i]._id, name: 'קוראת סקרנית', body: 'נקודת מבט מעניינת. אשמח לקרוא עוד על הנושא.' }, { article: saved[i]._id, name: 'איתי', body: 'תודה על הסיפור ועל ההסבר הנגיש.' });
+    const pubTime = +saved[i].publishedAt || (+now - (i + 2) * 3600000);
+    const countForArticle = (i % 3 === 0) ? 3 : 2;
+    for (let c = 0; c < countForArticle; c++) {
+      const template = sampleComments[(i * 2 + c) % sampleComments.length];
+      const offsetMin = 20 + c * 50 + ((i * 7 + c * 13) % 35);
+      const cTime = new Date(Math.min(+now - (countForArticle - c) * 120000, pubTime + offsetMin * 60000));
+      comments.push({
+        article: saved[i]._id,
+        name: template.name,
+        body: template.body,
+        createdAt: cTime,
+        updatedAt: cTime
+      });
+    }
   }
   await ViewStat.insertMany(points); await Comment.insertMany(comments);
-  console.info('Seeded 600 articles, 5 users, 80 comments and 6,720 hourly view records.');
+  console.info('Seeded 600 articles, 5 users, ' + comments.length + ' comments and 6,720 hourly view records.');
   console.info('Reporters: romi / nofar / bar / roy. Editor: ben. Password: the SEED_PASSWORD you configured.');
 }
 if (require.main === module) {

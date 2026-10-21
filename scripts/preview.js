@@ -38,7 +38,23 @@ app.get('/api/articles', (req, res) => {
   const page = Number(req.query.page) || 1;
   res.json({ items: rows.slice((page - 1) * 20, page * 20).map(a => ({ id: a.id, ...a.published.toObject(), author: users[Number(a.author.toString()) - 1].name, publishedAt: a.publishedAt, views: a.views, seen: false })), count: rows.length, hasMore: page * 20 < rows.length });
 });
-app.get('/api/articles/:id/comments', (req, res) => res.json({ items: [{ _id: 'preview-comment', name: 'קוראת סקרנית', body: 'נקודת מבט מעניינת. אשמח לקרוא עוד על הנושא.', createdAt: new Date() }], hasMore: false }));
+const previewCommentsPool = [
+  { name: 'קוראת סקרנית', body: 'נקודת מבט מעניינת מאוד. אשמח לקרוא כתבת המשך בנושא הזה.' },
+  { name: 'איתי', body: 'תודה על הסיפור ועל ההסבר הנגיש והברור.' },
+  { name: 'מיכל', body: 'נושא חשוב שנוגע לרבים מאיתנו. מעורר מחשבה על האופן שבו הדברים מתפתחים.' },
+  { name: 'דניאל', body: 'ניתוח מעמיק ומדויק. טוב לראות עיתונות איכותית שמתמקדת בפרטים.' },
+  { name: 'שירה ל.', body: 'מפתיע לגלות איך צעד קטן יכול להוביל לשינוי כל כך משמעותי.' },
+  { name: 'תמר', body: 'הדוגמאות שהבאתם ממחישות מצוין את המורכבות של הסוגיה.' }
+];
+app.get('/api/articles/:id/comments', (req, res) => {
+  const hash = String(req.params.id).split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
+  const c1 = previewCommentsPool[hash % previewCommentsPool.length];
+  const c2 = previewCommentsPool[(hash + 1) % previewCommentsPool.length];
+  res.json({ items: [
+    { _id: 'preview-comment-2', name: c2.name, body: c2.body, createdAt: new Date(Date.now() - 35 * 60000) },
+    { _id: 'preview-comment-1', name: c1.name, body: c1.body, createdAt: new Date(Date.now() - 110 * 60000) }
+  ], hasMore: false });
+});
 app.get('/api/weather', (req, res) => res.status(503).json({ error: 'בתצוגת העיצוב אין נתוני מזג אוויר חיים.' }));
 app.use('/api', (req, res) => res.status(503).json({ error: 'זו תצוגת עיצוב בלבד. לשמירה ולהתחברות הפעילו את המערכת המלאה עם MongoDB לפי README.' }));
 app.listen(process.env.PREVIEW_PORT || 3001, '0.0.0.0', () => console.log('Visual preview at http://localhost:' + (process.env.PREVIEW_PORT || 3001)));
