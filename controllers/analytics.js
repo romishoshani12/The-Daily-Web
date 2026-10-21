@@ -21,12 +21,12 @@ exports.createStat = async (req, res) => {
 exports.updateStat = async (req, res) => {
   if (!Number.isInteger(req.body.count) || req.body.count < 0) fail('מספר צפיות לא תקין.');
   const old = await ViewStat.findByIdAndUpdate(req.params.id, { count: req.body.count }, { runValidators: true });
-  if (!old) fail('הרשומה לא נמצאה.', 404);
+  if (!old) fail('רשומת הצפייה לא נמצאה.', 404);
   await Article.updateOne({ _id: old.article }, { $inc: { views: req.body.count - old.count } });
   console.info(JSON.stringify({ event: 'stat.corrected', user: req.user.id, stat: old.id }));
   res.json({ ok: true });
 };
 exports.deleteStat = async (req, res) => {
-  const old = await ViewStat.findByIdAndDelete(req.params.id); if (!old) fail('הרשומה לא נמצאה.', 404);
+  const old = await ViewStat.findByIdAndDelete(req.params.id); if (!old) fail('רשומת הצפייה לא נמצאה.', 404);
   await Article.updateOne({ _id: old.article }, { $inc: { views: -old.count } }); res.json({ ok: true });
 };

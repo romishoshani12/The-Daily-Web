@@ -49,7 +49,7 @@
   color:var(--muted);
 }
 .user-row .text-button {
-  margin-left:12px;
+  margin-inline-end:12px;
 }
 @media(max-width:760px) {
   .users-layout {

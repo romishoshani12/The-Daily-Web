@@ -24,7 +24,7 @@ exports.create = async (req, res) => {
   await publicArticle(req.params.id);
   const name = text(req.body.name, 60); const body = text(req.body.body, 1200);
   if (!await take('comment:' + req.visitor, 3, 60000)) {
-    res.set('Retry-After', '60'); fail('ניתן לשלוח עד 3 תגובות בדקה. נסו שוב בעוד דקה.', 429);
+    res.set('Retry-After', '60'); fail('אפשר לשלוח עד 3 תגובות בדקה. נסו שוב בעוד דקה.', 429);
   }
   res.status(201).json(await Comment.create({ article: req.params.id, name, body }));
 };

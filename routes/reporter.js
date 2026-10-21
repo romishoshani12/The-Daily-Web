@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { requireRole } = require('../middleware/security');
 const reporter = require('../controllers/reporter');
 const staff = requireRole('reporter', 'editor');
-router.get('/reporter', staff, (req, res) => res.render('workspace', { title: 'סביבת הכתב', mode: 'reporter' }));
+router.get('/reporter', staff, (req, res) => res.render('workspace', { title: 'הכתבות שלי', mode: 'reporter' }));
 router.get('/write/:id', staff, async (req, res) => {
   const article = await require('../services/workflow').owned(req.params.id, req.user);
   res.render('write', { title: 'עריכת כתבה', article });

@@ -23,7 +23,7 @@ async function identify(req, res, next) {
   res.locals.user = req.user || null;
   res.locals.csrf = sign('csrf:' + req.visitor + ':' + req.sessionToken);
   if (!['GET', 'HEAD', 'OPTIONS'].includes(req.method)) {
-    if (req.get('x-csrf-token') !== res.locals.csrf) fail('הדף פג תוקף. יש לרענן ולנסות שוב.', 403);
+    if (req.get('x-csrf-token') !== res.locals.csrf) fail('תוקף העמוד פג. רעננו את העמוד ונסו שוב.', 403);
   }
   next();
 }
@@ -33,7 +33,7 @@ function requireRole(...roles) {
       if (!req.path.startsWith('/api/')) return res.redirect('/login');
       return fail('נדרשת התחברות.', 401);
     }
-    if (!roles.includes(req.user.role)) fail('אין הרשאה לפעולה זו.', 403);
+    if (!roles.includes(req.user.role)) fail('אין לכם הרשאה לבצע את הפעולה הזו.', 403);
     next();
   };
 }

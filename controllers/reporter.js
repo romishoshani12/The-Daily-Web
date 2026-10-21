@@ -12,12 +12,12 @@ exports.get = async (req, res) => {
 };
 exports.save = async (req, res) => {
   const article = await owned(req.params.id, req.user); canEdit(article, req.user);
-  if (!Number.isInteger(req.body.revision) || article.revision !== req.body.revision) fail('קיימת גרסה חדשה יותר. יש לרענן לפני עריכה נוספת.', 409);
+  if (!Number.isInteger(req.body.revision) || article.revision !== req.body.revision) fail('יש גרסה חדשה יותר של הכתבה. רעננו את העמוד לפני שממשיכים לערוך.', 409);
   const draft = content(req.body);
   const updated = await Article.findOneAndUpdate({ _id: article._id, revision: article.revision, status: article.status }, {
     $set: { draft, status: article.status === 'published' ? 'draft' : article.status }, $inc: { revision: 1 }
   }, { new: true, runValidators: true });
-  if (!updated) fail('הכתבה השתנתה. יש לרענן.', 409);
+  if (!updated) fail('הכתבה השתנתה בינתיים. רעננו את העמוד.', 409);
   res.json({ revision: updated.revision, savedAt: updated.updatedAt, status: updated.status });
 };
 exports.submit = async (req, res) => {

@@ -21,5 +21,5 @@ exports.feed = async (req, res) => {
     Article.countDocuments(filter)
   ]);
   const visited = new Set(seen.map(String));
-  res.json({ items: rows.map(a => ({ id: a._id, ...a.published, publishedAt: a.publishedAt, author: a.author?.name || 'מערכת', views: a.views, seen: visited.has(String(a._id)) })), count, hasMore: page * 20 < count });
+  res.json({ items: rows.map(a => ({ id: a._id, ...a.published, publishedAt: a.publishedAt, author: a.author?.name || 'המערכת', views: a.views, seen: visited.has(String(a._id)) })), count, hasMore: page * 20 < count });
 };

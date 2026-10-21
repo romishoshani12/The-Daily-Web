@@ -19,8 +19,10 @@
   function row(comment) {
     const block = DW.node('article', 'comment');
     const header = DW.node('header'); const time = DW.node('time', '', DW.time(comment.createdAt)); time.dateTime = comment.createdAt;
-    header.append(DW.node('span', 'avatar', comment.name.slice(0, 1)), DW.node('strong', '', comment.name), time);
-    const body = DW.node('p', '', comment.body); block.append(header, body);
+    // Readers may write in any language, so names and text pick their own direction.
+    const name = DW.node('strong', '', comment.name); name.dir = 'auto';
+    header.append(DW.node('span', 'avatar', comment.name.slice(0, 1)), name, time);
+    const body = DW.node('p', '', comment.body); body.dir = 'auto'; block.append(header, body);
     if (main.dataset.editor === 'true') {
       const controls = DW.node('div', 'comment-actions');
       const edit = DW.node('button', 'text-button', 'עריכה'); const remove = DW.node('button', 'text-button danger', 'מחיקה');

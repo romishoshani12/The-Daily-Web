@@ -58,7 +58,7 @@
       document.getElementById('all-total').textContent = data.total.toLocaleString('he-IL');
       const events = data.events.map((event, index) => ({ ...event, version: index + 1 })).filter(e => +new Date(e.at) >= +new Date(data.since) && +new Date(e.at) <= +new Date(data.until));
       document.getElementById('updates-total').textContent = events.length;
-      document.getElementById('analytics-message').textContent = data.points.length ? '' : 'אין עדיין נתוני צפייה בטווח הזמן הזה.';
+      document.getElementById('analytics-message').textContent = data.points.length ? '' : 'עדיין אין נתוני צפייה בטווח הזמן הזה.';
       const eventBox = document.getElementById('publication-events'); eventBox.replaceChildren();
       events.forEach((event, index) => eventBox.append(DW.node('span', '', 'V' + event.version + ' · פורסם ' + DW.time(event.at))));
       const table = document.getElementById('stats-table'); table.replaceChildren();

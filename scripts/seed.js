@@ -64,7 +64,7 @@ async function seed() {
   }
   for (const article of articles) {
     if (article.published && article.status !== 'published') {
-      article.draft = { ...article.draft, title: article.draft.title + ' — עדכון בבדיקה', summary: 'תקציר מעודכן שממתין לאישור המערכת.', body: article.draft.body + '\n\nעדכון חדש: הפסקה הזו תופיע לקוראים רק לאחר אישור עורך.' };
+      article.draft = { ...article.draft, title: article.draft.title + ' — עדכון בבדיקה', summary: 'תקציר מעודכן שממתין לאישור העורך.', body: article.draft.body + '\n\nעדכון חדש: הפסקה הזו תופיע לקוראים רק לאחר אישור עורך.' };
     }
   }
   const saved = await Article.insertMany(articles);

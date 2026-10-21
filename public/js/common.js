@@ -23,6 +23,8 @@ window.DW = {
     clearTimeout(this.toastTimer); this.toastTimer = setTimeout(() => { box.hidden = true; }, 4500);
   },
   debounce(fn, ms = 250) { let timer; return (...args) => { clearTimeout(timer); timer = setTimeout(() => fn(...args), ms); }; },
+  // Hebrew counts: "כתבה אחת" for one, "12 כתבות" otherwise.
+  count(n, one, many) { return n === 1 ? one : n.toLocaleString('he-IL') + ' ' + many; },
   states: { draft: 'בהכנה', pending: 'ממתינה לאישור', published: 'פורסמה', returned: 'הוחזרה לתיקונים' }
 };
 document.getElementById('logout')?.addEventListener('click', async () => {

@@ -13,7 +13,8 @@
       if (current !== generation) return; list.replaceChildren();
       users.forEach(user => {
         const row = DW.node('article', 'user-row'); const details = DW.node('div');
-        details.append(DW.node('h2', '', user.name), DW.node('p', '', user.username + ' · ' + (user.role === 'editor' ? 'עורך' : 'כתב') + (user.active ? '' : ' · מושבת')));
+        const info = DW.node('p'); info.append(DW.node('bdi', '', user.username), ' · ' + (user.role === 'editor' ? 'עורך' : 'כתב') + (user.active ? '' : ' · מושבת'));
+        details.append(DW.node('h2', '', user.name), info);
         const controls = DW.node('div'); const edit = DW.node('button', 'text-button', 'עריכה'); const remove = DW.node('button', 'text-button danger', 'מחיקה');
         edit.addEventListener('click', () => {
           form.elements.id.value = user._id; form.elements.name.value = user.name; form.elements.username.value = user.username;

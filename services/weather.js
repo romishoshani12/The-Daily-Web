@@ -8,7 +8,7 @@ function fresh(value, cacheAge = MAX_AGE) {
   return age >= 0 && age <= MAX_AGE && Date.now() - value.fetchedAt < cacheAge;
 }
 function unavailable() {
-  const error = new Error('מזג האוויר אינו זמין כרגע.'); error.status = 503; return error;
+  const error = new Error('נתוני מזג האוויר אינם זמינים כרגע.'); error.status = 503; return error;
 }
 async function weather() {
   if (fresh(cached, 10 * 60000)) return cached;
