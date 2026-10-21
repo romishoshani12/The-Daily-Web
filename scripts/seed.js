@@ -63,7 +63,13 @@ async function seed() {
       points.push({ article: saved[i]._id, hour, count }); total += count;
     }
     await Article.updateOne({ _id: saved[i]._id }, { views: total });
-    comments.push({ article: saved[i]._id, name: 'קוראת סקרנית', body: 'נקודת מבט מעניינת. אשמח לקרוא עוד על הנושא.' }, { article: saved[i]._id, name: 'איתי', body: 'תודה על הסיפור ועל ההסבר הנגיש.' });
+    const pubTime = +saved[i].publishedAt || (+now - (i + 2) * 3600000);
+    const c1Time = new Date(Math.min(+now - 600000, pubTime + (25 + (i * 7) % 35) * 60000));
+    const c2Time = new Date(Math.min(+now - 120000, +pubTime + (95 + (i * 13) % 85) * 60000));
+    comments.push(
+      { article: saved[i]._id, name: 'קוראת סקרנית', body: 'נקודת מבט מעניינת. אשמח לקרוא עוד על הנושא.', createdAt: c1Time, updatedAt: c1Time },
+      { article: saved[i]._id, name: 'איתי', body: 'תודה על הסיפור ועל ההסבר הנגיש.', createdAt: c2Time, updatedAt: c2Time }
+    );
   }
   await ViewStat.insertMany(points); await Comment.insertMany(comments);
   console.info('Seeded 600 articles, 5 users, 80 comments and 6,720 hourly view records.');

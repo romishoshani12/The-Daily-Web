@@ -38,7 +38,10 @@ app.get('/api/articles', (req, res) => {
   const page = Number(req.query.page) || 1;
   res.json({ items: rows.slice((page - 1) * 20, page * 20).map(a => ({ id: a.id, ...a.published.toObject(), author: users[Number(a.author.toString()) - 1].name, publishedAt: a.publishedAt, views: a.views, seen: false })), count: rows.length, hasMore: page * 20 < rows.length });
 });
-app.get('/api/articles/:id/comments', (req, res) => res.json({ items: [{ _id: 'preview-comment', name: 'קוראת סקרנית', body: 'נקודת מבט מעניינת. אשמח לקרוא עוד על הנושא.', createdAt: new Date() }], hasMore: false }));
+app.get('/api/articles/:id/comments', (req, res) => res.json({ items: [
+  { _id: 'preview-comment-2', name: 'איתי', body: 'תודה על הסיפור ועל ההסבר הנגיש.', createdAt: new Date(Date.now() - 35 * 60000) },
+  { _id: 'preview-comment-1', name: 'קוראת סקרנית', body: 'נקודת מבט מעניינת. אשמח לקרוא עוד על הנושא.', createdAt: new Date(Date.now() - 110 * 60000) }
+], hasMore: false }));
 app.get('/api/weather', (req, res) => res.status(503).json({ error: 'בתצוגת העיצוב אין נתוני מזג אוויר חיים.' }));
 app.use('/api', (req, res) => res.status(503).json({ error: 'זו תצוגת עיצוב בלבד. לשמירה ולהתחברות הפעילו את המערכת המלאה עם MongoDB לפי README.' }));
 app.listen(process.env.PREVIEW_PORT || 3001, '0.0.0.0', () => console.log('Visual preview at http://localhost:' + (process.env.PREVIEW_PORT || 3001)));
