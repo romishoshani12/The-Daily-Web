@@ -4,16 +4,14 @@ const express = require('express');
 const path = require('node:path');
 const Article = require('../models/Article');
 const { CATEGORIES, STATE_LABELS } = require('../config/constants');
-const { titles, images } = require('./seed');
+const { sampleArticle } = require('./sample-content');
 const app = express();
 app.set('view engine', 'ejs'); app.set('views', path.join(__dirname, '../views'));
 app.locals.categories = CATEGORIES; app.locals.stateLabels = STATE_LABELS;
 app.locals.date = value => new Date(value).toLocaleDateString('he-IL', { day: 'numeric', month: 'long', year: 'numeric' });
 const users = ['רומי', 'נופר', 'בר', 'רועי', 'בן'].map((name, i) => ({ _id: String(i + 1).padStart(24, '0'), name, username: ['romi', 'nofar', 'bar', 'roy', 'ben'][i], role: i === 4 ? 'editor' : 'reporter', active: true }));
 const articles = Array.from({ length: 60 }, (_, i) => {
-  const draft = { title: titles[i % 12] + (i > 11 ? ' — מבט ' + (Math.floor(i / 12) + 1) : ''), category: CATEGORIES[i % 6], image: '/images/' + images[i % 6] + '.svg',
-    summary: 'מה קורה כשנותנים לרעיון חדש מקום בחיי היום־יום? יצאנו להסתכל מקרוב על האנשים, השאלות והאפשרויות שמעצבים את המחר.',
-    body: 'זוהי כתבת הדגמה מקורית לאתר החדשות. הסיפורים והנתונים בתצוגה הזו נועדו להמחיש את עיצוב המערכת.\n\nלפעמים השינוי מתחיל דווקא בפרטים הקטנים: שיחה ברחוב, שאלה שאיש עדיין לא שאל או מקום שמזמין אותנו לעצור. במרכז הסיפור עומדים אנשים שמבקשים להבין איך אפשר לעשות את הדברים מעט אחרת.\n\nהדרך מרעיון לתוצאה כוללת ניסיונות, הקשבה ובחינה של אפשרויות שונות. כשמסתכלים מקרוב, מגלים שאין תשובה אחת שמתאימה לכולם. ההקשר המקומי והצרכים המשתנים מחייבים גמישות.\n\nזהו מקום טוב להתחיל בו שיחה. הסיפור הבא עשוי להגיע דווקא מזווית שלא חשבנו עליה.' };
+  const draft = sampleArticle(i);
   const a = new Article({ _id: String(i + 100).padStart(24, '0'), author: users[i % 4]._id, draft, published: { ...draft }, publishedAt: new Date(Date.now() - i * 3600000), status: i < 12 ? 'published' : ['draft', 'pending', 'returned'][i % 3], revision: 0, views: 2840 - i * 25, publicationEvents: [{ at: new Date(Date.now() - 48 * 3600000), title: draft.title }, { at: new Date(Date.now() - 24 * 3600000), title: draft.title }], updatedAt: new Date(Date.now() - i * 3600000) });
   if (a.status === 'returned') a.editorNote = 'נא להרחיב את ההסבר בפסקה השנייה ולחדד את התקציר.';
   return a;

@@ -5,21 +5,7 @@ const Article = require('../models/Article');
 const Comment = require('../models/Comment');
 const ViewStat = require('../models/ViewStat');
 const { CATEGORIES } = require('../config/constants');
-const titles = [
-  'העיר של מחר כבר כאן: כשחדשנות פוגשת את הרחוב',
-  'מה אפשר ללמוד כשמביטים בשמיים קצת אחרת?',
-  'בין קירות העיר: המקומות שבהם התרבות מתחילה',
-  'הדרך הירוקה הביתה: שינוי קטן, השפעה גדולה',
-  'מעבר לתוצאה: האנשים שהופכים קבוצה לקהילה',
-  'חלון לעולם: הרעיונות שמחברים בין ערים רחוקות',
-  'פחות מסכים, יותר אפשרויות: טכנולוגיה בקצב שלנו',
-  'הסקרנות היא רק ההתחלה: יום אחד במעבדת המחקר',
-  'יוצרים מרחב: מפגש חדש בין אמנות לחיי היום־יום',
-  'לא רק נוף: הסיפור שמאחורי השטחים הפתוחים',
-  'קו הזינוק של כולם: ספורט שחוזר לשכונה',
-  'ללמוד מעבר לגבול: איך רעיון מקומי מגיע רחוק'
-];
-const images = ['technology', 'science', 'culture', 'environment', 'sport', 'world'];
+const { sampleArticle, images } = require('./sample-content');
 const sampleComments = [
   { name: 'קוראת סקרנית', body: 'נקודת מבט מעניינת מאוד. אשמח לקרוא כתבת המשך בנושא הזה.' },
   { name: 'איתי', body: 'תודה על הסיפור ועל ההסבר הנגיש והברור.' },
@@ -44,13 +30,7 @@ async function seed() {
   const now = Date.now();
   const articles = [];
   for (let i = 0; i < 600; i++) {
-    const category = i % 6;
-    const draft = {
-      title: titles[i % titles.length] + (i >= 12 ? ' — מבט ' + (Math.floor(i / 12) + 1) : ''),
-      summary: 'מה קורה כשנותנים לרעיון חדש מקום בחיי היום־יום? יצאנו להסתכל מקרוב על האנשים, השאלות והאפשרויות שמעצבים את המחר.',
-      body: 'זוהי כתבת הדגמה מקורית לאתר החדשות, ואינה דיווח חדשותי אמיתי. הנתונים, התיאורים והאירועים נועדו להציג את יכולות המערכת.\n\nלפעמים השינוי מתחיל דווקא בפרטים הקטנים: שיחה ברחוב, שאלה שאיש עדיין לא שאל או מקום שמזמין אותנו לעצור. במרכז הסיפור שלנו עומדים אנשים שמבקשים להבין איך אפשר לעשות את הדברים מעט אחרת.\n\nהדרך מרעיון לתוצאה איננה תמיד ישירה. היא כוללת ניסיונות, הקשבה ובחינה של אפשרויות שונות. מה שנראה פשוט במבט ראשון מתגלה כמערכת של החלטות קטנות, שלכל אחת מהן השפעה על התמונה הגדולה.\n\nכשמסתכלים מקרוב, מגלים שאין תשובה אחת שמתאימה לכולם. ההקשר המקומי, הניסיון של המשתתפים והצרכים המשתנים מחייבים גמישות. לכן השאלה המעניינת איננה רק מה נעשה, אלא גם מי שותף לתהליך ואיך בודקים את התוצאות.\n\nזהו מקום טוב להתחיל בו שיחה. יש עוד הרבה ללמוד, והסיפור הבא עשוי להגיע דווקא מזווית שלא חשבנו עליה.',
-      category: CATEGORIES[category], image: '/images/' + images[category] + '.svg'
-    };
+    const draft = sampleArticle(i);
     const isPublic = i < 510;
     const status = i < 480 ? 'published' : ['draft', 'pending', 'returned'][i % 3];
     const publicationAt = new Date(now - (i + 2) * 3600000);
@@ -99,4 +79,4 @@ async function seed() {
 if (require.main === module) {
   mongoose.connect(process.env.MONGODB_URI).then(seed).then(() => mongoose.disconnect()).catch(error => { console.error(error.message); process.exitCode = 1; return mongoose.disconnect(); });
 }
-module.exports = { seed, titles, images };
+module.exports = { seed, images };
