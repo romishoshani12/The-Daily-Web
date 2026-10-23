@@ -6,7 +6,7 @@
   --paper:#f8f6ef;
   --white:#fff;
   --ink:#182c29;
-  --muted:#6a756f;
+  --muted:#5f6a64;
   --line:#dddcd1;
   --green:#215b45;
   --lime:#dbea90;
@@ -38,6 +38,13 @@ button,input,select,textarea {
 button,a,input,textarea,select {
   -webkit-tap-highlight-color:transparent;
 }
+::selection {
+  background:var(--lime);
+  color:var(--ink);
+}
+input,textarea {
+  caret-color:var(--green);
+}
 button,a {
   touch-action:manipulation;
 }
@@ -49,8 +56,9 @@ button:disabled {
   opacity:.5;
 }
 button:focus-visible,a:focus-visible {
-  outline:3px solid #76a477;
-  outline-offset:4px;
+  outline:3px solid var(--green);
+  outline-offset:2px;
+  box-shadow:0 0 0 2px var(--white);
 }
 input:focus,textarea:focus,select:focus {
   outline:2px solid var(--green);
@@ -68,7 +76,7 @@ textarea {
   resize:vertical;
 }
 input::placeholder,textarea::placeholder {
-  color:#899189;
+  color:var(--muted);
 }
 label {
   display:flex;
@@ -218,6 +226,7 @@ em {
   background:var(--soft);
 }
 .button.small {
+  min-height:44px;
   padding:9px 16px;
 }
 .button.full {
@@ -228,6 +237,7 @@ em {
   border:0;
   color:var(--green);
   padding:7px 0;
+  min-height:44px;
   font-size:14px;
 }
 .danger {

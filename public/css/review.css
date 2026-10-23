@@ -17,4 +17,3 @@
   max-width:850px;
 }
 .comparison-image { display: block; width: 240px; max-width: 100%; margin: 16px 0; border-radius: 3px; }
-.published-comparison { border-inline-start: 4px solid var(--lime); }
