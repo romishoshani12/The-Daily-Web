@@ -27,7 +27,7 @@ function createApp() {
   app.use((error, req, res, next) => {
     if (res.headersSent) return next(error);
     const status = error.status || (error.name === 'CastError' || error.name === 'ValidationError' ? 400 : error.code === 11000 ? 409 : 500);
-    const message = status === 500 ? 'משהו השתבש. נסו שוב בעוד רגע.' : error.code === 11000 ? 'הרשומה כבר קיימת.' : error.message;
+    const message = status === 500 ? 'משהו השתבש. נסו שוב בעוד רגע.' : error.code === 11000 ? 'הרשומה כבר קיימת.' : error.name === 'CastError' ? 'המזהה בכתובת אינו תקין.' : error.message;
     console.error(JSON.stringify({ event: 'request.error', status, path: req.path, message: error.message, at: new Date() }));
     if (req.path.startsWith('/api/')) return res.status(status).json({ error: message });
     res.status(status).render('error', { title: 'לא הצלחנו להשלים את הבקשה', message, status });

@@ -64,7 +64,7 @@
       const remaining = 15 * 60000 - (Date.now() - new Date(data.observedAt).getTime());
       if (!(remaining > 0 && remaining <= 15 * 60000)) throw new Error('Expired weather');
       clearTimeout(weatherExpiry);
-      weatherExpiry = setTimeout(() => box.replaceChildren(DW.node('p', '', 'ממתינים לנתוני מזג אוויר מעודכנים.')), remaining);
+      weatherExpiry = setTimeout(() => { box.replaceChildren(DW.node('p', '', 'ממתינים לנתוני מזג אוויר מעודכנים.')); weather(); }, remaining);
       box.replaceChildren();
       const main = DW.node('div', 'weather-main'); main.append(DW.node('span', 'weather-temp', Math.round(data.temperature) + '°'), DW.node('span', 'weather-icon', data.code < 3 ? '☀' : '☁'));
       box.append(main, DW.node('p', '', data.city), DW.node('span', 'weather-time', 'נכון ל־' + new Date(data.observedAt).toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' })));
